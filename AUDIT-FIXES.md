@@ -1,15 +1,13 @@
 # Audit Fixes — Status Terkini
 
 > Domain produksi saat ini: **`alsada.co.id`** (lihat `astro.config.mjs`).
-> Catatan: dokumen versi lama menyebut `alsadabarokah.co.id` — itu BELUM diterapkan di kode.
-> Kalau memang mau pindah ke `.co.id`, lihat checklist "Pindah domain" di bawah.
 
 ## ✅ Sudah diperbaiki di kode (gelombang 1)
 
 1. **Konten blank tanpa JS** — `src/styles/global.css` + `src/layouts/Layout.astro`:
    fallback `@media (prefers-reduced-motion: reduce)` + `<noscript>` agar `.reveal` tetap terlihat.
 2. **Halaman 404** — `src/pages/404.astro` (otomatis jadi `/404.html` saat build).
-3. **JSON-LD lolos CSP** — `public/_headers`: hash `sha256-Ug4SJB0iKvfzA5N7hsQRlvUTVC7j3Z4NHoOooGYzcjk=`
+3. **JSON-LD lolos CSP** — `public/_headers`: hash `sha256-osnTEfQPbDXGskDyFc5BVB6x+a74SuhKyOoC9sz7aes=`
    pada `script-src` (TANPA `unsafe-inline`). Hash ini cocok untuk JSON-LD domain `alsada.co.id`.
 4. **Sitemap & robots** — `@astrojs/sitemap` di `astro.config.mjs` + `public/robots.txt`.
 5. **.gitignore + .env.example** — `.env` asli di-ignore.
@@ -40,7 +38,7 @@
       bisa tak terbaca → UI tampil error walau data masuk. Kalau bermasalah, pasang Cloudflare
       Worker tipis sebagai proxy CORS (lihat docs).
 - [ ] **Turnstile**: pastikan `TURNSTILE_SECRET` ter-set di Script Properties Apps Script,
-      dan site key `0x4AAAAAADrofqwSgWBFL6Ho` terdaftar untuk domain produksi. Kalau tidak,
+      dan site key `0x4AAAAAADtJ0fYZwDPE9bDW` terdaftar untuk domain produksi. Kalau tidak,
       SEMUA submit ditolak (Code.gs fail-closed).
 - [ ] **Deploy hook Sanity → Cloudflare Pages** supaya artikel baru otomatis ter-publish
       (situs static; tanpa hook artikel baru tak muncul sampai rebuild).
@@ -52,7 +50,7 @@
 - [ ] **Set env di Cloudflare Pages**: `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`.
 - [ ] Jalankan `npm install` → `npm run check` → `npm run build` dan pastikan bersih sebelum deploy.
 
-## 🔁 Checklist pindah domain (kalau jadi ke `alsadabarokah.co.id`)
+## 🔁 Checklist pindah domain
 
 Ubah SEMUA titik berikut bersamaan, kalau tidak ada yang rusak:
 

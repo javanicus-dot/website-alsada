@@ -49,7 +49,7 @@ npm run preview   # serve hasil build di http://localhost:4321
 - [ ] Tombol "Lihat Produk Kami" → scroll ke section Produk
 - [ ] Section About, Video, Produk (6 kartu), Artikel, FAQ, Testimoni, CTA tampil berurutan
 - [ ] Animasi `.reveal` muncul saat scroll; matikan JS → semua konten tetap terlihat (cek `noscript`)
-- [ ] Video autoplay saat masuk viewport, pause saat keluar; dengan `prefers-reduced-motion` video TIDAK autoplay
+- [ ] Video autoplay saat halaman dimuat (muted + loop)
 
 ### Navigasi (semua halaman)
 - [ ] Menu desktop: semua link berfungsi (Tentang, Produk, Artikel, Kontak)
@@ -102,7 +102,7 @@ npm run preview   # serve hasil build di http://localhost:4321
 
 ### Turnstile
 - [ ] Widget tampil di form (bukan kotak error "invalid sitekey")
-- [ ] Domain `alsada.co.id` sudah terdaftar untuk sitekey `0x4AAAAAADrofqwSgWBFL6Ho`
+- [ ] Domain `alsada.co.id` sudah terdaftar untuk sitekey `0x4AAAAAADtJ0fYZwDPE9bDW`
 - [ ] Secret key Turnstile sudah di-set di Apps Script (verifikasi server-side)
 
 ---

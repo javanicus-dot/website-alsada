@@ -49,7 +49,7 @@ For Cloudflare Pages deployment, set the variables above in the Pages dashboard 
 
 ## Domain
 
-`site` is set in `astro.config.mjs`. Currently using `https://alsada.co.id` (temporary); switching to `alsadabarokah.co.id` is just a single line change in `astro.config.mjs`. All canonical URLs, Open Graph tags, and JSON-LD automatically follow the domain.
+`site` is set in `astro.config.mjs`. Currently `https://alsada.co.id`. All canonical URLs, Open Graph tags, and JSON-LD automatically follow the domain.
 
 ## Contact form
 
@@ -71,5 +71,5 @@ Full setup (widget, sitekey, secret in Apps Script Properties, deploy): `docs/go
 
 ## Notes
 
-- OG image (`public/assets/og-image.jpg`) and logo (`public/assets/logo.png`) are not yet provided — add them before launch for clean share previews.
-- Final production domain: `alsadabarokah.co.id` (currently `alsada.co.id` as temporary).
+- OG image (`public/assets/og-image.jpg`) and logo (`public/assets/logo.png`) are provided — ready for launch.
+- Domain: `alsada.co.id`.
