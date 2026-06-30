@@ -169,5 +169,10 @@ const builder = imageUrlBuilder(client);
 
 export function urlFor(source: any) {
   // builder.image(null) tetap return builder object — .url() akan menghasilkan ""
+  // Return proxy yang tidak crash meskipun source invalid (coverImage tanpa asset reference)
+  if (!source?.asset?._ref) {
+    const noop = { url: () => "", width() { return this as any; }, height() { return this as any; } };
+    return noop as any;
+  }
   return builder.image(source).auto("format").quality(80);
 }
