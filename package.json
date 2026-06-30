@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node postbuild-sitemap.js",
     "preview": "astro preview",
     "check": "astro check",
     "postinstall": "node postinstall.js",
