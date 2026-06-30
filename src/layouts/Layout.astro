@@ -129,6 +129,15 @@ const structuredData = {
 
   <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
 
+  <!-- Google Analytics 4 (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-30SL5DP3H3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-30SL5DP3H3');
+  </script>
+
   <noscript>
     <!-- Tanpa JS: pastikan semua konten terlihat (jangan biarkan .reveal tersembunyi). -->
     <style>.reveal{opacity:1 !important;transform:none !important;}</style>
