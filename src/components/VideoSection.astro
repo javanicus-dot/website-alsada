@@ -29,6 +29,7 @@
       >
         <source src="/assets/video-v3.webm" type="video/webm" />
       </video>
+      <button class="play" id="muteBtn" aria-label="Nyalakan suara">🔇</button>
     </div>
   </div>
 </section>
@@ -57,5 +58,15 @@
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) forcePlay();
     });
+
+    // Tombol suara: toggle mute/unmute.
+    const btn = document.getElementById("muteBtn");
+    if (btn) {
+      btn.addEventListener("click", () => {
+        v.muted = !v.muted;
+        btn.textContent = v.muted ? "🔇" : "🔊";
+        btn.setAttribute("aria-label", v.muted ? "Nyalakan suara" : "Matikan suara");
+      });
+    }
   }
 </script>
