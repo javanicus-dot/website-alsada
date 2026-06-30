@@ -538,9 +538,10 @@ footer { background: var(--ink); color: var(--on-ink); padding: 80px 0 0; overfl
 
 .article-cover {
   width: 100%;
+  max-width: 760px;
   height: auto;
   display: block;
-  margin-top: 24px;
+  margin: 24px auto 0;
 }
 .btn-outline {
   background: transparent;
