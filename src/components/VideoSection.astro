@@ -1,0 +1,63 @@
+---
+// Section video — autoplay paksa & berjalan terus-menerus (loop). Tanpa tombol.
+// Video di-host lokal di /public/assets/. Ganti video.mp4 (+ video.webm bila ada)
+// dengan video asli yang sudah dikompres. poster = gambar sebelum video dimuat.
+---
+
+<section class="sec sec-cream">
+  <div class="wrap">
+    <div class="lead-row reveal">
+      <h2 class="h2">Tempat Teknologi Modern Bertemu Akar Alam</h2>
+      <p>
+        Kami percaya bahwa kemajuan peternakan harus tetap berpijak pada
+        keseimbangan alam. Karena itu, kami memadukan teknologi, sistem kerja 
+        modern, dan praktik peternakan yang bertanggung jawab dalam merawat
+        ternak, memberdayakan peternak, serta menjaga kualitas pangan yang
+        bermanfaat setiap hari.
+      </p>
+    </div>
+    <div class="video reveal">
+      <video
+        id="autoVideo"
+        class="video-el"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="/assets/video-cover.jpg"
+      >
+        <source src="/assets/video.webm" type="video/webm" />
+        <source src="/assets/video.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Video mengisi penuh kontainer .video (rasio 16/7 dari global.css). */
+  .video .video-el {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>
+
+<script>
+  // Autoplay PAKSA & terus-menerus. Tidak menghormati prefers-reduced-motion,
+  // tidak pause saat keluar viewport — video selalu hidup (muted + loop).
+  const v = document.getElementById("autoVideo");
+  if (v instanceof HTMLVideoElement) {
+    const forcePlay = () => v.play().catch(() => {});
+    forcePlay();
+    // Jaga agar tetap hidup: putar ulang kalau ter-pause atau saat tab kembali aktif.
+    v.addEventListener("pause", forcePlay);
+    v.addEventListener("canplay", forcePlay);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) forcePlay();
+    });
+  }
+</script>

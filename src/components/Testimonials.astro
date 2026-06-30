@@ -1,0 +1,55 @@
+---
+// Testimoni — social proof. Heading dibuat lebih persuasif.
+// CATATAN: isi testimoni di bawah harus diverifikasi keasliannya sebelum produksi.
+const items = [
+  {
+    initials: "BS",
+    name: "Budi Santoso",
+    role: "Pemilik Kedai Susu, Purbalingga",
+    text: '"Selama 8 bulan menjadi pelanggan, kami selalu puas dengan susu dari Alsada. Produknya segar, kualitasnya stabil, dan pengirimannya selalu tepat waktu."',
+  },
+  {
+    initials: "RW",
+    name: "Rina Wijaya",
+    role: "Panitia Kurban, Tangerang",
+    text: '"Kami membeli Sapi Bali untuk kurban tahun lalu melalui Alsada, dan hasilnya sangat memuaskan. Sapinya sehat, sesuai syariat, dan timnya sangat membantu."',
+  },
+  {
+    initials: "DK",
+    name: "Dr. Kurniawan",
+    role: "Veteriner Konsultan",
+    text: '"Dari beberapa peternakan sapi yang pernah saya kunjungi di Jawa Tengah, Alsada termasuk salah satu yang paling tertata. Manajemen kandangnya rapi, dan perawatan ternaknya terlihat sangat diperhatikan."',
+  },
+];
+---
+
+<section class="sec">
+  <div class="wrap">
+    <div class="lead-row reveal">
+      <h2 class="h2">Dipercaya Mitra, Pembeli, dan Profesional</h2>
+      <p>
+        Cerita nyata dari mereka yang tumbuh bersama peternakan kami dari kedai
+        susu, panitia kurban, hingga veteriner.
+      </p>
+    </div>
+    <div class="tgrid">
+      {
+        items.map((t) => (
+          <div class="tcard reveal">
+            <div class="stars" aria-label="Rating 5 dari 5">
+              ★★★★★
+            </div>
+            <p>{t.text}</p>
+            <div class="who">
+              <div class="av">{t.initials}</div>
+              <div>
+                <strong>{t.name}</strong>
+                <span>{t.role}</span>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

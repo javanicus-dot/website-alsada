@@ -1,0 +1,27 @@
+{
+  "name": "website-alsada",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "description": "Website Alsada - Astro + Sanity CMS + Cloudflare Pages",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "postinstall": "node postinstall.js",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.7.3",
+    "@sanity/client": "^6.22.5",
+    "@sanity/image-url": "^1.1.0",
+    "astro": "^4.16.18",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0"
+  }
+}

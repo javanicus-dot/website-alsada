@@ -1,0 +1,56 @@
+---
+// Tentang / value section. Framework: klaim → alasan percaya → hasil.
+import { stats } from "../data/stats";
+---
+
+<section class="sec sec-ink" id="tentang">
+  <div class="wrap">
+    <div class="lead-row reveal">
+      <h2 class="h2">
+        Transformasi Peternakan dari Kandang Konvensional Menjadi Sistem Usaha
+        Profesional
+      </h2>
+      <p>
+        Kami menghadirkan pendekatan baru dalam pengelolaan peternakan. Tidak
+        hanya berfokus pada pemeliharaan, kami juga membangun sistem usaha yang
+        modern, terdokumentasi, dan berorientasi pada kinerja. Melalui tata
+        kelola yang profesional, setiap proses produksi dan transaksi jual beli
+        dapat berjalan lebih cerdas, efisien, transparan, dan berkelanjutan.
+      </p>
+    </div>
+    <div class="innov">
+      <div class="photo reveal">
+        <img
+          src="/assets/about/about-1.jpg"
+          alt="Sapi FH di kandang modern Alsada"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="photo reveal">
+        <img
+          src="/assets/about/about-2.jpg"
+          alt="Operasional peternakan susu sapi Alsada"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div class="stats reveal">
+        {
+          stats.map((s) => (
+            <div class="stat">
+              <h3>{s.value}</h3>
+              <p>{s.title}</p>
+              <span>{s.desc}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <div class="about-cta reveal">
+      <a href="/tentang" class="btn btn-lime"
+        >Lihat Profil &amp; Legalitas Lengkap <span class="arrow">↗</span></a
+      >
+    </div>
+  </div>
+</section>

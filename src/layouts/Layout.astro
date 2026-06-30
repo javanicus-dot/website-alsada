@@ -1,0 +1,143 @@
+---
+// Layout utama. Dipakai di semua halaman sebagai pembungkus.
+// Props-nya bisa di-override per halaman (judul, deskripsi, canonical, OG, dll).
+
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  ogType?: string;
+}
+
+// Domain diambil dari `site` di astro.config.mjs. Ganti di sana saat pindah domain.
+const SITE = (Astro.site?.toString() ?? "https://alsada.my.id").replace(/\/$/, "");
+
+const {
+  // Judul homepage: keyword utama di depan (susu FH, sapi, daging) + nama brand.
+  title = "Peternakan Sapi Modern & Susu FH Premium — PT Alsada Barokah Nusantara",
+  // Deskripsi homepage: ringkas, padat keyword, ada manfaat + bukti kredibilitas.
+  description = "Peternakan sapi modern terintegrasi hulu ke hilir: susu sapi FH segar, jual-beli sapi sehat tersertifikasi, daging premium, breeding, & penggemukan Limousin. Badan hukum PT, legalitas lengkap, tata kelola siap diaudit.",
+  canonical = new URL(Astro.url.pathname, `${SITE}/`).toString(),
+  ogImage = `${SITE}/assets/og-image.jpg`,
+  ogType = "website",
+} = Astro.props;
+
+// ===== Structured data global (Organization + WebSite) dalam satu @graph. =====
+// Catatan CSP: konten script ini di-allow lewat hash sha256 di public/_headers.
+// Kalau objek di bawah diubah, hash WAJIB diregenerasi (lihat docs/google-sheets-integration.md).
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE}/#organization`,
+      "name": "PT. Alsada Barokah Nusantara",
+      "url": `${SITE}/`,
+      "logo": `${SITE}/assets/logo.png`,
+      "image": `${SITE}/assets/og-image.jpg`,
+      "description": "Peternakan modern terintegrasi hulu ke hilir: produksi susu sapi FH, jual-beli sapi, penjualan daging berkualitas tinggi, breeding sapi perah, dan penggemukan sapi Limousin.",
+      "slogan": "Ketahanan Pangan, Ditata dari Hulu ke Hilir",
+      "email": "ptalsadabarokah@icloud.com",
+      "telephone": "+62-811-2701-1942",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ds. Kutabawa, Karangreja",
+        "addressLocality": "Purbalingga",
+        "addressRegion": "Jawa Tengah",
+        "addressCountry": "ID"
+      },
+      "areaServed": "ID",
+      "knowsAbout": [
+        "Susu Sapi FH",
+        "Jual Beli Sapi",
+        "Daging Premium",
+        "Breeding Sapi Perah",
+        "Penggemukan Sapi Limousin"
+      ],
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "NIB",
+        "value": "2404260099941"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+62-811-2701-1942",
+        "email": "ptalsadabarokah@icloud.com",
+        "contactType": "customer service",
+        "areaServed": "ID",
+        "availableLanguage": ["id"]
+      },
+      "sameAs": [
+        "https://instagram.com/alsada.id",
+        "https://wa.me/6281127011942"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE}/#website`,
+      "url": `${SITE}/`,
+      "name": "PT. Alsada Barokah Nusantara",
+      "inLanguage": "id-ID",
+      "publisher": { "@id": `${SITE}/#organization` }
+    }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0c2316" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="peternakan modern, susu sapi FH, ketahanan pangan, jual beli sapi, daging premium, sapi perah, sapi limousin, breeding sapi, penggemukan sapi, investasi peternakan" />
+  <meta name="author" content="PT. Alsada Barokah Nusantara" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <meta property="og:type" content={ogType} />
+  <meta property="og:locale" content="id_ID" />
+  <meta property="og:site_name" content="PT. Alsada Barokah Nusantara" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="PT. Alsada Barokah Nusantara" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Catatan: skrip Cloudflare Turnstile TIDAK dimuat global di sini.
+       Hanya halaman /kontak yang memuatnya (lihat src/pages/kontak.astro slot="head"). -->
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+
+  <noscript>
+    <!-- Tanpa JS: pastikan semua konten terlihat (jangan biarkan .reveal tersembunyi). -->
+    <style>.reveal{opacity:1 !important;transform:none !important;}</style>
+  </noscript>
+
+  <slot name="head" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Lewati ke konten</a>
+  <slot />
+</body>
+</html>

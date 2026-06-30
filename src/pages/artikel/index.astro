@@ -1,0 +1,49 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import ArticleRow from "../../components/ArticleRow.astro";
+import { getAllArticles } from "../../lib/sanity";
+
+const title = "Artikel — PT. Alsada Barokah Nusantara";
+const description = "Update harian tentang peternakan modern, sapi FH, daging premium, breeding, dan ketahanan pangan dari Alsada.";
+
+// Ambil semua artikel dari Sanity, diurut dari terbaru.
+const articles = await getAllArticles();
+---
+
+<Layout title={title} description={description}>
+  <Nav />
+  <main id="main-content">
+    <section class="article-hero article-hero--list">
+      <div class="wrap">
+        <span class="pill-badge">Update Harian</span>
+        <h1 class="article-hero__title-list">Artikel & Wawasan Peternakan</h1>
+        <p class="lead">Cerita, praktik, dan update dari operasional peternakan modern kami.</p>
+      </div>
+    </section>
+
+    <section class="sec sec--tight-top">
+      <div class="wrap">
+        {articles.length > 0 ? (
+          <div class="article-list">
+            {articles.map((a) => (
+              <ArticleRow
+                slug={a.slug}
+                title={a.title}
+                excerpt={a.excerpt}
+                date={a.publishedAt}
+                category={a.category}
+              />
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <p>Belum ada artikel. Silakan tambahkan artikel di Sanity Studio.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

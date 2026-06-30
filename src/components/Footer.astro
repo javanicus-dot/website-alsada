@@ -1,0 +1,136 @@
+---
+// Footer dengan 4 kolom + social + wordmark besar.
+const socials = [
+  { label: "Instagram", text: "IG", href: "https://instagram.com/alsada.id" },
+  {
+    label: "WhatsApp",
+    text: "WA",
+    href: "https://wa.me/6281127011942?text=Halo%20Tim%20Alsada%2C%20saya%20ingin%20bertanya%20mengenai%20produk%2C%20ternak%2C%20atau%20peluang%20kerja%20sama%20dengan%20Alsada.",
+  },
+];
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="about">
+        <a href="/" class="brand"
+          ><span class="mark"
+            ><img
+              src="/assets/logo.png"
+              alt="Logo Alsada"
+              width="32"
+              height="32"
+            /></span
+          >ALSADA</a
+        >
+        <p>
+          PT Alsada Barokah Nusantara didirikan dengan komitmen kuat untuk
+          mendorong transformasi sektor peternakan melalui pengembangan usaha
+          sapi perah dan sapi potong dengan praktik modern dan terintegrasi.
+        </p>
+        <div class="socials">
+          {
+            socials.map((s) => (
+              <a
+                href={s.href}
+                aria-label={s.label}
+                target="_blank"
+                rel="noopener"
+              >
+                {s.text}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Perusahaan</h4>
+        <a href="/#tentang">Tentang Kami</a>
+        <a href="/tentang">Mitra & Legalitas</a>
+        <a href="/#produk">Produk</a>
+        <a href="/artikel">Artikel</a>
+      </div>
+      <div class="foot-col">
+        <h4>Produk</h4>
+        <a href="/#produk">Susu Sapi FH</a>
+        <a href="/#produk">Jual Beli Sapi</a>
+        <a href="/#produk">Daging Premium</a>
+        <a href="/#produk">Breeding & Pedet</a>
+        <a href="/#produk">Penggemukan Sapi</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kontak</h4>
+        <a href="mailto:ptalsadabarokah@icloud.com"
+          >ptalsadabarokah@icloud.com</a
+        >
+        <a href="tel:+6281127011942">+62 811 2701 1942</a>
+        <a href="/kontak">Halaman Kontak</a>
+        <span class="foot-loc"
+          >Purbalingga, Jawa Tengah &amp; Nagekeo, Nusa Tenggara Timur</span
+        >
+      </div>
+    </div>
+    <div class="foot-mid">
+      <span
+        >© {year} PT Alsada Barokah Nusantara. Seluruh hak cipta dilindungi.</span
+      >
+      <span>Membangun Ketahanan Pangan dari Hulu ke Hilir.</span>
+    </div>
+    <div class="wordmark">ALSADA</div>
+  </div>
+</footer>
+
+<style>
+  /* Logo menggantikan huruf "A" di dalam .mark tanpa mengubah ukuran/penempatan kotak.
+     Kotak .mark tetap 32x32 (lihat global.css); img hanya mengisi area di dalamnya. */
+  .brand .mark img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    box-sizing: border-box;
+    padding: 3px;
+  }
+</style>
+
+<script>
+  // Reveal on scroll — pakai IntersectionObserver (sangat ringan).
+  const io = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      }),
+    { threshold: 0.12 },
+  );
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  // Highlight nav link aktif sesuai section yang terlihat di scroll.
+  // Hanya jalan kalau halaman punya section[id] (homepage).
+  const sections = [...document.querySelectorAll<HTMLElement>("section[id]")];
+  if (sections.length > 0) {
+    const navlinks = [...document.querySelectorAll("nav.links a")];
+    addEventListener("scroll", () => {
+      let cur = "home";
+      sections.forEach((s) => {
+        if (scrollY >= s.offsetTop - 120) cur = s.id;
+      });
+      navlinks.forEach((a) => {
+        const isActive =
+          a.getAttribute("href") === `/${"#"}${cur}` ||
+          a.getAttribute("href") === `#${cur}`;
+        a.classList.toggle("active", isActive);
+        // WCAG 2.4.7: beri tahu screen reader link mana yang aktif.
+        if (isActive) {
+          a.setAttribute("aria-current", "page");
+        } else {
+          a.removeAttribute("aria-current");
+        }
+      });
+    });
+  }
+</script>

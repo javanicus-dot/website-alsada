@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import VideoSection from "../components/VideoSection.astro";
+import Products from "../components/Products.astro";
+import ArticleRow from "../components/ArticleRow.astro";
+import Testimonials from "../components/Testimonials.astro";
+import CTA from "../components/CTA.astro";
+import Footer from "../components/Footer.astro";
+import FAQ from "../components/FAQ.astro";
+import { getLatestArticles } from "../lib/sanity";
+
+// Ambil 5 artikel terbaru dari Sanity.
+// Kalau PUBLIC_SANITY_PROJECT_ID belum di-set, fallback ke array kosong
+// supaya website tetap jalan saat development tanpa Sanity setup.
+const latestArticles = await getLatestArticles(5);
+---
+
+<Layout>
+  <Fragment slot="head">
+    <!-- Preload gambar hero (LCP) khusus homepage. -->
+    <link rel="preload" as="image" href="/assets/hero.jpg" />
+  </Fragment>
+  <Nav />
+  <main id="main-content">
+    <Hero />
+    <About />
+    <VideoSection />
+    <Products />
+
+    {latestArticles.length > 0 && (
+      <section class="sec home-articles" id="artikel">
+        <div class="wrap">
+          <div class="lead-row reveal">
+            <h2 class="h2">Wawasan & Update dari Lapangan</h2>
+            <p>Praktik peternakan, cerita ternak, dan kabar operasional terbaru — langsung dari kandang kami.</p>
+          </div>
+          <div class="article-list home-articles-list reveal">
+            {latestArticles.map((a) => (
+              <ArticleRow
+                slug={a.slug}
+                title={a.title}
+                excerpt={a.excerpt}
+                date={a.publishedAt}
+                category={a.category}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <FAQ />
+
+    <Testimonials />
+    <CTA />
+  </main>
+  <Footer />
+</Layout>

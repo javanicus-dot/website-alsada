@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.astro/
+.output/
+.vercel/
+.netlify/
+
+# Environment (JANGAN commit kredensial)
+.env
+.env.*
+!.env.example
+
+# Sanity Studio
+sanity-studio/node_modules/
+sanity-studio/dist/
+
+# Logs & OS / editor
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

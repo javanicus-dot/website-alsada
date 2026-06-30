@@ -1,0 +1,156 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { stats } from "../data/stats";
+
+const title = "Tentang Kami — Profil & Legalitas PT Alsada Barokah Nusantara";
+const description =
+  "Profil PT Alsada Barokah Nusantara: peternakan modern terintegrasi dari hulu ke hilir dengan legalitas lengkap, tata kelola rapi, dan komitmen pada produk berkualitas, kemitraan, serta keberlanjutan.";
+
+// Legalitas & tata kelola.
+const legal = [
+  {
+    badge: "PT",
+    title: "Badan Hukum PT",
+    desc: "Perusahaan resmi terdaftar dan berbadan hukum PT.",
+  },
+  {
+    badge: "NIB",
+    title: "Nomor Induk Berusaha",
+    desc: "NIB 2404260099941 — izin berusaha terbit dan aktif.",
+  },
+  {
+    badge: "NPWP",
+    title: "Taat Pajak",
+    desc: "Kewajiban perpajakan terdokumentasi rapi.",
+  },
+  {
+    badge: "FIN",
+    title: "Keuangan Rapi",
+    desc: "Pencatatan dan pelaporan usaha dikelola secara rapi, transparan, dan dapat dipertanggungjawabkan.",
+  },
+  {
+    badge: "KH-1",
+    title: "Sertifikat Karantina",
+    desc: "Sertifikat Kesehatan Hewan dari Badan Karantina Indonesia.",
+  },
+  {
+    badge: "ESG",
+    title: "Praktik Berkelanjutan",
+    desc: "Biogas & zero waste untuk peternakan ramah lingkungan.",
+  },
+];
+---
+
+<Layout title={title} description={description}>
+  <Nav />
+  <main id="main-content">
+    <!-- HERO -->
+    <section class="tentang-hero">
+      <div class="wrap">
+        <span class="pill-badge">Tentang Kami</span>
+        <h1>Peternakan Modern Terintegrasi dari Hulu ke Hilir</h1>
+        <p>
+          PT. Alsada Barokah Nusantara memadukan metode peternakan modern,
+          legalitas lengkap, dan tata kelola yang rapi guna membangun ekosistem
+          pangan yang mandiri, berkelanjutan, dan layak dipercaya mitra.
+        </p>
+      </div>
+    </section>
+
+    <!-- OVERVIEW: Cerita + Stats -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="tentang-grid">
+          <div class="tentang-text">
+            <h2>Cerita Kami</h2>
+            <p>
+              Alsada lahir dari keprihatinan terhadap ketergantungan Indonesia
+              pada impor susu dan daging. Kami percaya, dengan metode modern dan
+              tata kelola yang rapi, produksi lokal bisa memenuhi kebutuhan
+              nasional sekaligus memberdayakan peternak.
+            </p>
+            <p>
+              Peternakan kami beroperasi di dua wilayah strategis. <strong
+                >Purbalingga, Jawa Tengah</strong
+              > dan <strong>Nagekeo, NTT</strong>. Jawa Tengah dipilih karena
+              memiliki lokasi strategis di tengah Pulau Jawa, sehingga
+              memudahkan aksesibilitas, distribusi, dan pengembangan jaringan
+              usaha. Sementara itu, NTT dipilih untuk mendukung program breeding
+              sapi Bali dan sapi potong tropis yang memiliki daya adaptasi kuat
+              terhadap iklim Indonesia.
+            </p>
+            <p>
+              Lima lini usaha kami saling menopang dalam satu ekosistem
+              terintegrasi: produksi susu sapi FH, jual beli sapi (termasuk sapi
+              Bali untuk kurban), daging premium hasil ternak terpilih, breeding
+              & pedet untuk regenerasi ternak, hingga penggemukan sapi untuk
+              pasar premium.
+            </p>
+            <p>
+              Kami tidak hanya memproduksi, kami menata dari hulu ke hilir,
+              dengan komitmen mutu yang konsisten dan akuntabilitas di setiap
+              langkah.
+            </p>
+          </div>
+          <aside class="tentang-stats">
+            {
+              stats.map((s) => (
+                <div class="stat-card reveal">
+                  <h3>{s.value}</h3>
+                  <p>{s.title}</p>
+                  <span>{s.desc}</span>
+                </div>
+              ))
+            }
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEGALITAS & MITRA -->
+    <section class="sec sec-ink" id="mitra">
+      <div class="wrap">
+        <div class="lead-row reveal">
+          <h2 class="h2">Legalitas & Tata Kelola yang Bisa Anda Percaya</h2>
+          <p>
+            Fondasi kepercayaan kami dibangun melalui badan hukum resmi, izin
+            usaha yang lengkap, serta tata kelola yang rapi dan transparan.
+            Setiap proses kami arahkan agar dapat dipertanggungjawabkan kepada
+            pelanggan, mitra, dan pihak yang bekerja sama dengan Alsada.
+          </p>
+        </div>
+        <div class="legal-grid">
+          {
+            legal.map((l) => (
+              <div class="legal-card reveal">
+                <span class="legal-badge">{l.badge}</span>
+                <h4>{l.title}</h4>
+                <p>{l.desc}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA KEMITRAAN -->
+    <section class="sec cta-kemitraan">
+      <div class="wrap">
+        <div class="ctaband reveal">
+          <h2>Tertarik Bermitra dengan Alsada?</h2>
+          <p>
+            Butuh informasi produk, pembelian ternak, pasokan susu, atau peluang
+            kerja sama? Tim Alsada siap mendengarkan kebutuhan Anda dan membantu
+            menemukan bentuk kerja sama yang tepat.
+          </p>
+          <a href="/kontak#form" class="btn btn-dark"
+            >Hubungi Tim Alsada<span class="arrow">↗</span></a
+          >
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

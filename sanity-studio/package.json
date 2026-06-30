@@ -1,0 +1,29 @@
+{
+  "name": "alsada-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sanity Studio untuk Alsada - content management untuk artikel harian",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy"
+  },
+  "dependencies": {
+    "@sanity/vision": "^3.57.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sanity": "^3.57.4",
+    "styled-components": "^6.1.13"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.5",
+    "typescript": "^5.6.3"
+  },
+  "overrides": {
+    "glob": "^10.4.5",
+    "semver": "^7.6.4",
+    "tar": "^7.4.3"
+  }
+}

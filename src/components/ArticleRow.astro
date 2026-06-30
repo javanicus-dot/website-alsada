@@ -1,0 +1,31 @@
+---
+// Komponen satu baris artikel — dipakai di halaman /artikel dan homepage.
+// Props `date` adalah ISO string (misal "2026-06-26T...") — di-format jadi tanggal lokal ID.
+interface Props {
+  slug: string;
+  title: string;
+  excerpt?: string;
+  date: string; // ISO datetime
+  category?: string;
+}
+
+const { slug, title, excerpt, date, category } = Astro.props;
+
+const dt = new Date(date);
+const formatted = dt.toLocaleDateString('id-ID', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+}).toUpperCase();
+---
+
+<a href={`/artikel/${slug}`} class="article-row">
+  <time class="date" datetime={date}>{formatted}</time>
+  <div class="article-content">
+    <h3>{title}</h3>
+    {excerpt && <p>{excerpt}</p>}
+  </div>
+  <span class="read-more">
+    {category ? category + ' →' : 'Baca →'}
+  </span>
+</a>

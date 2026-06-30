@@ -1,0 +1,319 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+const title = "Hubungi Kami — Konsultasi, Kemitraan & Pembelian | Alsada";
+const description =
+  "Diskusikan kemitraan, investasi, atau pembelian susu, sapi, dan daging Alsada. Konsultasi awal gratis tanpa komitmen — tim kami merespons dalam 1–2 hari kerja.";
+---
+
+<Layout title={title} description={description}>
+  <Fragment slot="head">
+    <!-- Cloudflare Turnstile (anti-spam) — dimuat HANYA di halaman kontak, bukan di semua halaman. -->
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+      is:inline></script>
+  </Fragment>
+  <Nav />
+  <main id="main-content">
+    <!-- HERO -->
+    <section class="kontak-hero">
+      <div class="wrap">
+        <span class="pill-badge kontak-pill">Hubungi Kami</span>
+        <h1>Mari Berdiskusi dengan Tim Alsada</h1>
+        <p>
+          Butuh pasokan susu premium, produk peternakan berkualitas, atau ingin
+          menjajaki kemitraan dengan Alsada? Kami siap mendengarkan kebutuhan
+          Anda dan membantu menemukan bentuk kerja sama yang paling sesuai.
+          Hubungi tim Alsada hari ini untuk berdiskusi lebih lanjut.
+        </p>
+      </div>
+    </section>
+
+    <!-- MAIN: FORM + INFO -->
+    <section class="kontak-main">
+      <div class="wrap kontak-grid">
+        <!-- FORM CARD -->
+        <div class="kontak-form-card" id="form">
+          <form id="kontakForm" novalidate>
+            <h2>Kirim Pesan</h2>
+            <p class="form-hint">
+              Isi formulir di bawah ini. Tim kami akan menghubungi Anda dalam
+              1-2 hari kerja.
+            </p>
+
+            <div class="field">
+              <label for="nama">Nama Lengkap *</label>
+              <input
+                id="nama"
+                name="nama"
+                type="text"
+                placeholder="Nama Anda"
+                required
+                autocomplete="name"
+              />
+            </div>
+
+            <div class="field">
+              <label for="kontak">Email atau No. WhatsApp *</label>
+              <input
+                id="kontak"
+                name="kontak"
+                type="text"
+                placeholder="email@contoh.com atau 08xx"
+                required
+              />
+              <small class="field-hint"
+                >Pilih salah satu yang paling mudah dihubungi.</small
+              >
+            </div>
+
+            <div class="field">
+              <label for="minat">Saya tertarik sebagai *</label>
+              <select id="minat" name="minat" required>
+                <option value="">Pilih salah satu...</option>
+                <option value="Investor">Investor</option>
+                <option value="Mitra Peternak">Mitra Peternak</option>
+                <option value="Pembeli Susu / Daging"
+                  >Pembeli Susu / Daging</option
+                >
+                <option value="Vendor / Pemasok">Vendor / Pemasok</option>
+                <option value="Media / Pers">Media / Pers</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="lokasi">Daerah / Lokasi Anda</label>
+              <input
+                id="lokasi"
+                name="lokasi"
+                type="text"
+                placeholder="Kota, provinsi (opsional)"
+                autocomplete="address-level2"
+              />
+            </div>
+
+            <div class="field">
+              <label for="pesan">Pesan</label>
+              <textarea
+                id="pesan"
+                name="pesan"
+                rows="5"
+                placeholder="Ceritakan kebutuhan Anda. Semakin jelas, semakin cepat kami bisa membantu."
+              ></textarea>
+            </div>
+
+            <!-- Honeypot: bot auto-fill, manusia tidak lihat. CSS sembunyikan dari screen reader juga. -->
+            <div
+              class="hp"
+              aria-hidden="true"
+              style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none"
+            >
+              <label for="website">Website</label>
+              <input
+                id="website"
+                name="website"
+                type="text"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- Cloudflare Turnstile (anti-spam). Set sitekey di Layout.astro atau ganti di sini. -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADrofqwSgWBFL6Ho">
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-lime btn-submit"
+              id="submitBtn"
+            >
+              Kirim & Hubungi Saya →
+            </button>
+
+            <div class="form-ok" id="formOk" role="status" aria-live="polite">
+              Terima kasih! Pesan Anda sudah kami terima. Tim akan menghubungi
+              Anda dalam 1-2 hari kerja.
+            </div>
+
+            <div
+              class="form-err"
+              id="formErr"
+              role="alert"
+              aria-live="assertive"
+            >
+              Maaf, ada masalah teknis. Silakan coba lagi, atau hubungi langsung
+              via WA/E-mail di samping.
+            </div>
+          </form>
+        </div>
+
+        <!-- INFO SIDE -->
+        <aside class="kontak-info">
+          <div class="info-card">
+            <h3>Hubungi Langsung</h3>
+            <div class="info-row">
+              <span class="info-label">Telp / WA</span>
+              <a href="tel:+6281127011942" class="info-value"
+                >+62 811 2701 1942</a
+              >
+            </div>
+            <div class="info-row">
+              <span class="info-label">Email</span>
+              <a href="mailto:ptalsadabarokah@icloud.com" class="info-value"
+                >ptalsadabarokah@icloud.com</a
+              >
+            </div>
+            <div class="info-row">
+              <span class="info-label">Web</span>
+              <a
+                href="https://alsada.my.id"
+                class="info-value"
+                target="_blank"
+                rel="noopener">alsada.my.id</a
+              >
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3>Kantor & Lokasi Operasional</h3>
+            <div class="info-row">
+              <span class="info-label">Kantor</span>
+              <span class="info-value"
+                >JL. Raya Selaganggeng, Mrebet,<br />Purbalingga, Jawa Tengah.</span
+              >
+            </div>
+            <div class="info-row">
+              <span class="info-label">Jawa Tengah</span>
+              <span class="info-value"
+                >Ds. Kutabawa, Karangreja,<br />Purbalingga, Jawa Tengah.</span
+              >
+            </div>
+            <div class="info-row">
+              <span class="info-label">NTT</span>
+              <span class="info-value">Nagekeo,<br />Nusa Tenggara Timur.</span>
+            </div>
+          </div>
+
+          <div class="info-card info-card-lime">
+            <h3>Setelah Anda Kirim Pesan</h3>
+            <ol class="info-steps">
+              <li>Pesan masuk ke database internal tim kami.</li>
+              <li>Kami cek kecocokan dengan layanan yang Anda butuhkan.</li>
+              <li>
+                Tim menghubungi Anda dalam 1-2 hari kerja via WhatsApp atau
+                email.
+              </li>
+              <li>Diskusi lebih lanjut sesuai kebutuhan spesifik Anda.</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  // === KONFIGURASI ===
+  // GANTI URL ini dengan URL Google Apps Script yang sudah di-deploy.
+  // Cara setup ada di: docs/google-sheets-integration.md
+  const APPS_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbyiDXX7vVxExHmrfIoOfzJshUVPfKJ6ytuL1Mr0GLVEawyfkwSmUPmhiPx1S6_iDMuOsA/exec";
+
+  const form = document.getElementById("kontakForm") as HTMLFormElement;
+  const okEl = document.getElementById("formOk");
+  const errEl = document.getElementById("formErr");
+  const btn = document.getElementById("submitBtn") as HTMLButtonElement;
+  // Timestamp saat halaman dimuat — dipakai anti-spam: tolak submit < 2.5 detik (bot).
+  const formLoadedAt = Date.now();
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Reset state
+    okEl?.style.setProperty("display", "none");
+    errEl?.style.setProperty("display", "none");
+
+    // Validasi sederhana
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
+
+    // === Anti-spam: honeypot + minimum-time + Turnstile token ===
+    if (data.website) {
+      console.warn("honeypot triggered");
+      return;
+    }
+    if (Date.now() - formLoadedAt < 2500) {
+      console.warn("submitted too fast");
+      return;
+    }
+    const turnstileToken = data["cf-turnstile-response"];
+    if (!turnstileToken) {
+      errEl?.style.setProperty("display", "block");
+      return;
+    }
+
+    // Tampilkan loading state
+    const originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Mengirim...";
+
+    try {
+      // Kirim ke Google Apps Script — MODE CORS supaya balasan server BISA dibaca,
+      // jadi UI menampilkan status yang sebenarnya (sukses / gagal), bukan asal "berhasil".
+      // Content-Type 'text/plain' dipakai SENGAJA agar tergolong "simple request" dan
+      // TIDAK memicu preflight OPTIONS (Apps Script tidak menangani OPTIONS).
+      // Server (Code.gs) HARUS membalas JSON { ok: true } / { ok: false }.
+      // Lihat docs/google-sheets-integration.md bagian "Opsi: Form dengan status akurat (CORS)".
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({
+          nama: data.nama,
+          kontak: data.kontak,
+          minat: data.minat,
+          lokasi: data.lokasi || "",
+          pesan: data.pesan || "",
+          // Wajib diteruskan ke server agar Apps Script bisa verifikasi Turnstile.
+          "cf-turnstile-response": turnstileToken,
+          source: "website-kontak",
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      // Baca status sebenarnya dari server.
+      let result: { ok?: boolean; error?: string } | null = null;
+      try {
+        result = await res.json();
+      } catch {
+        /* respons bukan JSON */
+      }
+
+      if (res.ok && result?.ok) {
+        okEl?.style.setProperty("display", "block");
+        form.reset();
+        // Reset widget Turnstile agar token tidak terpakai ulang pada submit berikutnya.
+        (window as any).turnstile?.reset?.();
+      } else {
+        console.warn("Server menolak submit:", result?.error || res.status);
+        errEl?.style.setProperty("display", "block");
+      }
+    } catch (err) {
+      console.error("Form submission failed:", err);
+      errEl?.style.setProperty("display", "block");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = originalText;
+    }
+  });
+</script>

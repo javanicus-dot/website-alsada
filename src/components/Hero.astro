@@ -1,0 +1,63 @@
+---
+// Hero section — bagian paling atas homepage.
+// Copywriting: value proposition jelas (apa, untuk siapa, kenapa beda) + dual CTA +
+// trust strip (bukti kredibilitas yang sudah ada: badan hukum, NIB, karantina, lokasi).
+---
+
+<section class="hero" id="home">
+  <div class="wrap hero-content">
+    <!-- <span class="pill-badge">Peternakan Modern Terintegrasi Hulu → Hilir</span> -->
+    <h1>Membangun Masa Depan Peternakan Indonesia</h1>
+    <p>
+      PT Alsada Barokah Nusantara didirikan dengan komitmen kuat untuk
+      mendorong transformasi sektor peternakan melalui pengembangan usaha sapi
+      perah dan sapi potong dengan praktik modern dan terintegrasi.
+    </p>
+    <div class="hero-cta">
+      <a href="/kontak#form" class="btn btn-lime"
+        >Konsultasi &amp; Kemitraan <span class="arrow">↗</span></a
+      >
+      <a href="#produk" class="btn btn-out">Lihat Produk Kami</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+  }
+  .hero-trust {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin: 30px 0 0;
+    padding: 0;
+  }
+  .hero-trust li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+  }
+  .hero-trust li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--lime);
+    font-weight: 700;
+  }
+  @media (max-width: 640px) {
+    .hero-trust {
+      gap: 8px 18px;
+    }
+    .hero-trust li {
+      font-size: 0.82rem;
+    }
+  }
+</style>

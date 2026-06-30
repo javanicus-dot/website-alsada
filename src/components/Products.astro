@@ -1,0 +1,70 @@
+---
+// Produk & Kegiatan Utama. Copywriting: setiap kartu dibuka dengan MANFAAT,
+// lalu bukti/cara kami memenuhinya. Tetap memakai 6 item & gambar yang sudah ada.
+const products = [
+  {
+    img: "/assets/products/susu-fh.jpg",
+    alt: "Susu segar sapi Friesian Holstein",
+    title: "Produksi Susu",
+    desc: "Susu segar berkualitas tinggi dari sapi Friesian Holstein unggulan, diperah setiap hari melalui proses yang higienis dan terstandar untuk menjaga kesegaran, keamanan, serta cita rasa alami.",
+  },
+  {
+    img: "/assets/products/jual-beli-sapi.jpg",
+    alt: "Jual beli sapi sehat tersertifikasi",
+    title: "Jual Beli Sapi",
+    desc: "Kami menyediakan sapi sehat dan tersertifikasi untuk kebutuhan peternakan, kurban, dan pengembangbiakan, termasuk sapi Bali pilihan. Seluruh proses dilakukan secara jelas dan transparan.",
+  },
+  {
+    img: "/assets/products/daging-premium.jpg",
+    alt: "Daging sapi premium",
+    title: "Daging Berkualitas Tinggi",
+    desc: "Daging premium kami berasal dari ternak yang dipelihara dengan pakan pilihan dan pola pemberian pakan yang terukur. Pendekatan ini membantu menjaga pertumbuhan ternak secara optimal, sehingga mampu menghasilkan daging berkualitas tinggi.",
+  },
+  {
+    img: "/assets/products/breeding-pedet.jpg",
+    alt: "Breeding sapi perah dan perawatan pedet",
+    title: "Breeding & Pedet",
+    desc: "Pembibitan sapi perah kami didukung area khusus perawatan pedet, sehingga proses regenerasi ternak dapat dikelola sejak dini untuk menghasilkan sapi yang sehat, produktif, dan siap mendukung keberlanjutan usaha.",
+  },
+  {
+    img: "/assets/products/penggemukan-limousin.jpg",
+    alt: "Penggemukan sapi Limousin",
+    title: "Penggemukan",
+    desc: "Program penggemukan sapi kami dimulai dari seleksi ternak muda, pengelolaan pakan, dan pemantauan bobot rutin agar nutrisi terserap optimal menjadi pertumbuhan bobot dan kualitas daging yang sesuai dengan kebutuhan pasar premium.",
+  },
+  {
+    img: "/assets/products/head-office.jpg",
+    alt: "Head office dan administrasi terpadu Alsada",
+    title: "Head Office Terpadu",
+    desc: "Pusat administrasi yang menata keuangan dan pelaporan sebagai fondasi transparansi, akuntabilitas, dan kepercayaan bagi seluruh mitra.",
+  },
+];
+---
+
+<section class="sec" id="produk">
+  <div class="wrap">
+    <div class="lead-row reveal">
+      <h2 class="h2">Lima Lini Usaha, Satu Ekosistem Terintegrasi</h2>
+      <p>
+        Setiap lini usaha Alsada saling menopang untuk
+        menghadirkan satu ekosistem peternakan yang mampu mendukung kebutuhan
+        pangan, ternak, dan kemitraan secara lebih terpadu.
+      </p>
+    </div>
+    <div class="pgrid">
+      {
+        products.map((p) => (
+          <div class="pcard reveal">
+            <div class="thumb">
+              <img src={p.img} alt={p.alt} loading="lazy" decoding="async" />
+            </div>
+            <div>
+              <h4>{p.title}</h4>
+              <p>{p.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

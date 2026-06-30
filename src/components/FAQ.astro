@@ -1,0 +1,78 @@
+---
+// FAQ accordion + FAQPage structured data (peluang rich snippet di Google).
+// Item pertama auto-open untuk menarik perhatian.
+// CSP: script JSON-LD di bawah di-allow lewat hash sha256 di public/_headers.
+// Kalau isi `faqs` diubah, hash FAQPage WAJIB diregenerasi.
+const faqs = [
+  {
+    q: "Produk apa saja yang ditawarkan Alsada?",
+    a: "Alsada menyediakan susu sapi FH premium, berbagai jenis sapi termasuk sapi Bali untuk kurban, daging berkualitas tinggi dari ternak sendiri, program breeding sapi perah dan pedet, serta penggemukan sapi.",
+    open: true,
+  },
+  {
+    q: "Bagaimana cara membeli produk atau ternak?",
+    a: "Untuk pembelian produk atau ternak, silakan hubungi kami melalui WhatsApp di +62 811 2701 1942 atau Anda juga dapat mengisi formulir pada halaman Hubungi Kami, dan tim kami akan menghubungi Anda dalam 1 – 2 hari kerja.",
+  },
+  {
+    q: "Di mana lokasi kantor dan kandang operasional Alsada?",
+    a: "Kantor PT Alsada Barokah Nusantara berada di Jl. Raya Selaganggeng, Mrebet, Purbalingga. Kandang operasional utama kami berlokasi di Desa Kutabawa, Karangreja, Purbalingga, Jawa Tengah. Selain itu, Alsada juga memiliki kandang kedua di Nagekeo, Nusa Tenggara Timur, yang difokuskan untuk breeding sapi Bali dan sapi potong tropis.",
+  },
+  {
+    q: "Apakah perusahaan sudah berbadan hukum resmi?",
+    a: "Ya. PT Alsada Barokah Nusantara telah berbadan hukum resmi sebagai Perseroan Terbatas (PT) dan memiliki kelengkapan legalitas usaha, termasuk NIB aktif 2404260099941, NPWP, perizinan usaha, serta Sertifikat Kesehatan Hewan (KH-1) dari Badan Karantina Indonesia.",
+  },
+  {
+    q: "Bagaimana skema kerja sama kemitraan di Alsada?",
+    a: "Alsada terbuka untuk berbagai bentuk kerja sama, baik dalam penyediaan produk, pembelian ternak, distribusi, pengembangan usaha, maupun kemitraan jangka panjang. Setiap kerja sama dibangun secara transparan, profesional, dan disesuaikan dengan kebutuhan masing-masing mitra. Silakan hubungi tim kami untuk berdiskusi lebih lanjut mengenai peluang kerja sama yang sesuai.",
+  },
+  {
+    q: "Apakah Alsada membuka program kemitraan untuk peternak kecil?",
+    a: "Ya. Alsada berkomitmen untuk tumbuh bersama peternak lokal. Di Desa Kutabawa, kami menjalin kemitraan dengan beberapa peternak sapi melalui pendampingan teknis, dukungan pakan subsidi, jaminan pembelian susu dengan harga tetap, serta akses konsultasi veteriner gratis agar peternak dapat berkembang lebih mandiri dan berkelanjutan.",
+  },
+  {
+    q: "Bagaimana Alsada menerapkan praktik ramah lingkungan?",
+    a: "Alsada menerapkan prinsip ESG secara nyata dalam kegiatan peternakan, mulai dari pengolahan kotoran sapi menjadi biogas dan pupuk organik, efisiensi penggunaan air, hingga pengurangan limbah operasional. Pendekatan ini membantu menciptakan peternakan yang lebih bersih, produktif, dan berkelanjutan, di mana limbah dikelola sebagai sumber energi dan nilai tambah, bukan sebagai polusi.",
+  },
+];
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<section class="sec sec-cream" id="faq">
+  <div class="wrap">
+    <div class="lead-row reveal">
+      <h2 class="h2">Pertanyaan yang Sering Diajukan</h2>
+      <p>
+        Jawaban singkat untuk hal-hal yang paling sering ditanyakan tentang
+        produk, legalitas, dan kemitraan kami.
+      </p>
+    </div>
+    <div class="faq reveal">
+      {
+        faqs.map((f) => (
+          <details open={f.open}>
+            <summary>
+              {f.q}
+              <span class="pm">+</span>
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(faqStructuredData)}
+/>
