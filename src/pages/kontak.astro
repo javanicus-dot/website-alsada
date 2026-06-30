@@ -38,7 +38,7 @@ const description =
       <div class="wrap kontak-grid">
         <!-- FORM CARD -->
         <div class="kontak-form-card" id="form">
-          <form id="kontakForm" novalidate>
+          <form id="kontakForm" novalidate aria-label="Formulir kontak Alsada">
             <h2>Kirim Pesan</h2>
             <p class="form-hint">
               Isi formulir di bawah ini. Tim kami akan menghubungi Anda dalam
@@ -53,6 +53,7 @@ const description =
                 type="text"
                 placeholder="Nama Anda"
                 required
+                aria-required="true"
                 autocomplete="name"
               />
             </div>
@@ -65,15 +66,17 @@ const description =
                 type="text"
                 placeholder="email@contoh.com atau 08xx"
                 required
+                aria-required="true"
+                aria-describedby="kontak-hint"
               />
-              <small class="field-hint"
+              <small class="field-hint" id="kontak-hint"
                 >Pilih salah satu yang paling mudah dihubungi.</small
               >
             </div>
 
             <div class="field">
               <label for="minat">Saya tertarik sebagai *</label>
-              <select id="minat" name="minat" required>
+              <select id="minat" name="minat" required aria-required="true">
                 <option value="">Pilih salah satu...</option>
                 <option value="Investor">Investor</option>
                 <option value="Mitra Peternak">Mitra Peternak</option>
@@ -123,14 +126,19 @@ const description =
               />
             </div>
 
-            <!-- Cloudflare Turnstile (anti-spam). Set sitekey di Layout.astro atau ganti di sini. -->
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAADtJ0fYZwDPE9bDW">
+            <!-- Cloudflare Turnstile (anti-spam) -->
+            <div
+              class="cf-turnstile"
+              data-sitekey="0x4AAAAAADtJ0fYZwDPE9bDW"
+              aria-label="Verifikasi keamanan Turnstile"
+            >
             </div>
 
             <button
               type="submit"
               class="btn btn-lime btn-submit"
               id="submitBtn"
+              aria-busy="false"
             >
               Kirim & Hubungi Saya →
             </button>
@@ -266,6 +274,7 @@ const description =
     // Tampilkan loading state
     const originalText = btn.textContent;
     btn.disabled = true;
+    btn.setAttribute("aria-busy", "true");
     btn.textContent = "Mengirim...";
 
     try {
@@ -313,6 +322,7 @@ const description =
       errEl?.style.setProperty("display", "block");
     } finally {
       btn.disabled = false;
+      btn.setAttribute("aria-busy", "false");
       btn.textContent = originalText;
     }
   });
