@@ -169,5 +169,5 @@ const builder = imageUrlBuilder(client);
 
 export function urlFor(source: any) {
   if (!source) return { url: () => "" };
-  return builder.image(source);
+  return builder.image(source).auto("format").quality(80);
 }

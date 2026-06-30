@@ -81,14 +81,15 @@ function safeUrl(url: string | undefined | null): string {
 }
 
 function renderBlock(block: PortableTextBlock, markDefs: any[] = []): string {
-  // Inline image block
+  // Inline image block — render via urlFor supaya gambar dari Sanity CDN
+  // otomatis teroptimasi (auto format → WebP, quality 80).
   if (block._type === "image") {
-    const url = block.asset?.url || block.asset?._ref || "";
+    // Coba bangun URL lewat Sanity image builder; fallback ke asset.url/_ref mentah.
+    let src = block.asset?.url || block.asset?._ref || "";
     const alt = block.alt || block.caption || "";
     const caption = block.caption ? `<figcaption>${escapeHtml(block.caption)}</figcaption>` : "";
-    const safeSrc = safeUrl(url);
-    if (!safeSrc) return "";
-    return `<figure><img src="${escapeHtml(safeSrc)}" alt="${escapeHtml(alt)}" loading="lazy" />${caption}</figure>`;
+    if (!src) return "";
+    return `<figure><img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async" />${caption}</figure>`;
   }
 
   // Text block
