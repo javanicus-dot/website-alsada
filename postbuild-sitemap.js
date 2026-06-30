@@ -1,7 +1,25 @@
-// Post-build: salin sitemap-index.xml → sitemap.xml biar crawler nemu.
-import { cpSync } from "fs";
+// Post-build: salin sitemap-index.xml → sitemap.xml + inject lastmod biar Bing crawl.
+import { readFileSync, writeFileSync, cpSync } from "fs";
 import { resolve } from "path";
 
 const dist = new URL("./dist", import.meta.url).pathname;
+
+// Copy sitemap-index → sitemap.xml
 cpSync(resolve(dist, "sitemap-index.xml"), resolve(dist, "sitemap.xml"));
-console.log("[postbuild] sitemap.xml created from sitemap-index.xml");
+
+// Inject <lastmod> ke sitemap-0.xml dengan tanggal build hari ini
+const sitemapPath = resolve(dist, "sitemap-0.xml");
+const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+
+let xml = readFileSync(sitemapPath, "utf-8");
+
+// Tambahkan <lastmod> setelah <loc> untuk setiap <url>
+// Gunakan regex yang juga match URL root (akhiran /)
+xml = xml.replace(
+  /<loc>(https:\/\/alsada\.co\.id\/[^<]*)<\/loc>/g,
+  (_, url) =>
+    `<loc>${url}</loc>\n      <lastmod>${today}</lastmod>`,
+);
+
+writeFileSync(sitemapPath, xml);
+console.log(`[postbuild] sitemap.xml + lastmod=${today} injected`);
