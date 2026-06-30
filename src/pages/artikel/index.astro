@@ -6,7 +6,8 @@ import ArticleRow from "../../components/ArticleRow.astro";
 import { getAllArticles } from "../../lib/sanity";
 
 const title = "Artikel — PT. Alsada Barokah Nusantara";
-const description = "Update harian tentang peternakan modern, sapi FH, daging premium, breeding, dan ketahanan pangan dari Alsada.";
+const description =
+  "Update harian tentang peternakan modern, sapi FH, daging premium, breeding, dan ketahanan pangan dari Alsada.";
 
 // Ambil semua artikel dari Sanity, diurut dari terbaru.
 const articles = await getAllArticles();
@@ -19,29 +20,36 @@ const articles = await getAllArticles();
       <div class="wrap">
         <span class="pill-badge">Update Harian</span>
         <h1 class="article-hero__title-list">Artikel & Wawasan Peternakan</h1>
-        <p class="lead">Cerita, praktik, dan update seputar peternakan.</p>
+        <p class="lead">
+          Praktik peternakan, cerita ternak, dan kabar terbaru dari para
+          peternak.
+        </p>
       </div>
     </section>
 
     <section class="sec sec--tight-top">
       <div class="wrap">
-        {articles.length > 0 ? (
-          <div class="article-list">
-            {articles.map((a) => (
-              <ArticleRow
-                slug={a.slug}
-                title={a.title}
-                excerpt={a.excerpt}
-                date={a.publishedAt}
-                category={a.category}
-              />
-            ))}
-          </div>
-        ) : (
-          <div class="empty-state">
-            <p>Belum ada artikel. Silakan tambahkan artikel di Sanity Studio.</p>
-          </div>
-        )}
+        {
+          articles.length > 0 ? (
+            <div class="article-list">
+              {articles.map((a) => (
+                <ArticleRow
+                  slug={a.slug}
+                  title={a.title}
+                  excerpt={a.excerpt}
+                  date={a.publishedAt}
+                  category={a.category}
+                />
+              ))}
+            </div>
+          ) : (
+            <div class="empty-state">
+              <p>
+                Belum ada artikel. Silakan tambahkan artikel di Sanity Studio.
+              </p>
+            </div>
+          )
+        }
       </div>
     </section>
   </main>
