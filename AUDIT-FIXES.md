@@ -1,6 +1,6 @@
 # Audit Fixes — Status Terkini
 
-> Domain produksi saat ini: **`alsada.my.id`** (lihat `astro.config.mjs`).
+> Domain produksi saat ini: **`alsada.co.id`** (lihat `astro.config.mjs`).
 > Catatan: dokumen versi lama menyebut `alsadabarokah.co.id` — itu BELUM diterapkan di kode.
 > Kalau memang mau pindah ke `.co.id`, lihat checklist "Pindah domain" di bawah.
 
@@ -10,7 +10,7 @@
    fallback `@media (prefers-reduced-motion: reduce)` + `<noscript>` agar `.reveal` tetap terlihat.
 2. **Halaman 404** — `src/pages/404.astro` (otomatis jadi `/404.html` saat build).
 3. **JSON-LD lolos CSP** — `public/_headers`: hash `sha256-Ug4SJB0iKvfzA5N7hsQRlvUTVC7j3Z4NHoOooGYzcjk=`
-   pada `script-src` (TANPA `unsafe-inline`). Hash ini cocok untuk JSON-LD domain `alsada.my.id`.
+   pada `script-src` (TANPA `unsafe-inline`). Hash ini cocok untuk JSON-LD domain `alsada.co.id`.
 4. **Sitemap & robots** — `@astrojs/sitemap` di `astro.config.mjs` + `public/robots.txt`.
 5. **.gitignore + .env.example** — `.env` asli di-ignore.
 6. **Aksesibilitas fokus** — `:focus-visible` + outline field form.

@@ -1,6 +1,6 @@
 # QA Checklist — PT. Alsada Barokah Nusantara
 
-Panduan uji menyeluruh sebelum naik ke production (`https://alsada.my.id`).
+Panduan uji menyeluruh sebelum naik ke production (`https://alsada.co.id`).
 Kerjakan berurutan. Centang `[x]` setiap item lulus. Kalau ada yang gagal, catat di bagian "Temuan" paling bawah.
 
 ---
@@ -102,7 +102,7 @@ npm run preview   # serve hasil build di http://localhost:4321
 
 ### Turnstile
 - [ ] Widget tampil di form (bukan kotak error "invalid sitekey")
-- [ ] Domain `alsada.my.id` sudah terdaftar untuk sitekey `0x4AAAAAADrofqwSgWBFL6Ho`
+- [ ] Domain `alsada.co.id` sudah terdaftar untuk sitekey `0x4AAAAAADrofqwSgWBFL6Ho`
 - [ ] Secret key Turnstile sudah di-set di Apps Script (verifikasi server-side)
 
 ---
@@ -110,7 +110,7 @@ npm run preview   # serve hasil build di http://localhost:4321
 ## 4. SEO & Structured Data
 
 - [ ] View-source tiap halaman: `<title>` & `<meta name=description>` UNIK dan sesuai
-- [ ] `<link rel=canonical>` benar (mengarah ke URL halaman itu di `alsada.my.id`)
+- [ ] `<link rel=canonical>` benar (mengarah ke URL halaman itu di `alsada.co.id`)
 - [ ] OG/Twitter tags lengkap; `og:type` = `website` (umum) / `article` (halaman artikel)
 - [ ] `robots.txt` benar & menunjuk ke sitemap
 - [ ] `sitemap-index.xml` memuat semua halaman termasuk artikel
@@ -131,7 +131,7 @@ npm run preview   # serve hasil build di http://localhost:4321
   # hitung ulang hash setelah mengubah isi JSON-LD
   node -e "const c=require('crypto');const s=require('fs').readFileSync(0,'utf8');console.log('sha256-'+c.createHash('sha256').update(s,'utf8').digest('base64'))"
   ```
-- [ ] Cek header live: `curl -sI https://alsada.my.id | grep -i -E 'content-security|x-frame|x-content|referrer|permissions'`
+- [ ] Cek header live: `curl -sI https://alsada.co.id | grep -i -E 'content-security|x-frame|x-content|referrer|permissions'`
 - [ ] `Strict-Transport-Security`/HTTPS aktif; `http://` redirect ke `https://`
 - [ ] `.env`, `/sanity-studio` source, file rahasia TIDAK ter-publish di `dist/`
 
@@ -171,9 +171,9 @@ Target (mobile):
 
 ```bash
 # Semua harus balas 200 (atau 200 untuk 404 page yang di-serve)
-for p in / /tentang /kontak /artikel; do echo -n "$p → "; curl -s -o /dev/null -w "%{http_code}\n" https://alsada.my.id$p; done
-curl -sI https://alsada.my.id/robots.txt | head -1
-curl -s https://alsada.my.id/sitemap-index.xml | head -5
+for p in / /tentang /kontak /artikel; do echo -n "$p → "; curl -s -o /dev/null -w "%{http_code}\n" https://alsada.co.id$p; done
+curl -sI https://alsada.co.id/robots.txt | head -1
+curl -s https://alsada.co.id/sitemap-index.xml | head -5
 ```
 
 - [ ] Semua route balas `200`

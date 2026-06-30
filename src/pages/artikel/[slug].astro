@@ -34,7 +34,7 @@ const bodyHtml = portableTextToHtml(article.body);
 
 const title = `${article.title} — Alsada`;
 const description = article.excerpt || "";
-const canonical = new URL(Astro.url.pathname, "https://alsada.my.id/").toString();
+const canonical = new URL(Astro.url.pathname, "https://alsada.co.id/").toString();
 const schemaImage = canonical.replace(/\/[^/]+$/, "/") + "assets/og-image.jpg";
 ---
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alsada.my.id/sitemap-index.xml
+Sitemap: https://alsada.co.id/sitemap-index.xml

@@ -49,7 +49,7 @@ Sudah dites end-to-end: row masuk ke tab `Kontak` dengan mapping benar.
 1. Login ke [Cloudflare dashboard](https://dash.cloudflare.com/) → **Turnstile** → **Add widget**.
 2. Isi:
    - **Widget name**: `Alsada Kontak Website`
-   - **Domains**: `alsada.my.id` (tambah `alsadabarokah.co.id` setelah migrasi domain)
+   - **Domains**: `alsada.co.id` (tambah `alsadabarokah.co.id` setelah migrasi domain)
 3. Save → catat **Site Key** (public, untuk form) dan **Secret Key** (RAHASIA — jangan pernah ditulis di file/repo; hanya disimpan di Script Properties).
 4. **Site Key** → buka `src/pages/kontak.astro` (atribut `data-sitekey` pada `<div class="cf-turnstile">`), ganti dengan site key kamu. (Site key bersifat publik, aman ditaruh di HTML.)
 5. **Secret Key** → cukup Run function `setup()` di Apps Script editor (lihat step 4 di section sebelumnya) — secret akan otomatis tersimpan di Script Properties `TURNSTILE_SECRET`.
@@ -291,6 +291,6 @@ yang di-hash adalah isi `<script>` yang benar-benar dirender:
    `sha256-` + base64( SHA-256( isi-script ) ).
 3. Salin kedua output `sha256-...` ke `script-src` pada `public/_headers`.
 
-> Hash saat ini (domain produksi `https://alsada.my.id`):
+> Hash saat ini (domain produksi `https://alsada.co.id`):
 > - `@graph`   : `sha256-hkN6FQnVU6+hxXAPrnpUhnhPpoLcnIsgaQelxezrGJo=`
 > - `FAQPage`  : `sha256-VkdIHadsds3WgqPKVuMpa3/34ozCMosPbDVRvLsn4Gs=`
