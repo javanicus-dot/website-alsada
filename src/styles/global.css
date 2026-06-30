@@ -178,21 +178,19 @@ nav.links a.active { background: var(--lime); color: #10240f; font-weight: 600; 
 
 /* === HERO === */
 .hero {
-  min-height: min(720px, 88vh);
-  /* dvh: iOS Safari dynamic viewport — address bar tidak menutupi konten */
-  min-height: min(720px, 88dvh);
+  min-height: 100dvh;
+  /* fallback untuk browser yang belum support dvh */
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 120px 0 80px;
+  padding: 120px 0 60px;
   position: relative;
   color: #fff;
   background:
     linear-gradient(180deg, rgba(8, 20, 12, .55) 0%, rgba(8, 20, 12, .35) 50%, rgba(8, 20, 12, .85) 100%),
     url('/assets/hero.jpg') center/cover;
 }
-.hero-content { max-width: 680px; }
 .pill-badge {
-
   display: inline-block;
   padding: 8px 18px;
   border: 1px solid rgba(255, 255, 255, .4);
@@ -201,7 +199,7 @@ nav.links a.active { background: var(--lime); color: #10240f; font-weight: 600; 
   backdrop-filter: blur(6px);
   margin-bottom: 22px;
 }
-.hero h1 { font-size: clamp(2rem, 5vw, 3.6rem); margin-bottom: 20px; line-height: 1.08; letter-spacing: -.015em; }
+.hero h1 { font-size: clamp(2rem, 5vw, 4.2rem); margin-bottom: 20px; line-height: 1.08; letter-spacing: -.015em; }
 .hero p {
   font-size: 1.08rem;
   color: rgba(255, 255, 255, .9);
