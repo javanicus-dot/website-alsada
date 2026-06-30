@@ -89,15 +89,6 @@ const articleLdJson = {
       <meta itemprop="dateModified" content={article.publishedAt} />
       <meta itemprop="image" content={schemaImage} />
       <header class="article-hero">
-        {article.coverImage && (
-          <img
-            class="article-cover"
-            src={urlFor(article.coverImage).width(1200).height(600).url()}
-            alt={article.title}
-            loading="eager"
-            decoding="async"
-          />
-        )}
         <div class="wrap">
           <div class="meta">
             <a href="/artikel" style="color:inherit;opacity:.7">← Semua Artikel</a>
@@ -108,6 +99,15 @@ const articleLdJson = {
           </div>
           <h1 itemprop="headline">{article.title}</h1>
           {article.excerpt && <p class="lead" itemprop="description">{article.excerpt}</p>}
+          {article.coverImage && (
+            <img
+              class="article-cover"
+              src={urlFor(article.coverImage).url()}
+              alt={article.title}
+              loading="eager"
+              decoding="async"
+            />
+          )}
         </div>
       </header>
 
