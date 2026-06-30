@@ -47,8 +47,7 @@
 </style>
 
 <script>
-  // Autoplay PAKSA & terus-menerus. Tidak menghormati prefers-reduced-motion,
-  // tidak pause saat keluar viewport — video selalu hidup (muted + loop).
+  // Autoplay & terus-menerus — video selalu hidup (muted + loop).
   const v = document.getElementById("autoVideo");
   if (v instanceof HTMLVideoElement) {
     const forcePlay = () => v.play().catch(() => {});
