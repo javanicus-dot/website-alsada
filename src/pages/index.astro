@@ -30,27 +30,32 @@ const latestArticles = await getLatestArticles(5);
     <VideoSection />
     <Products />
 
-    {latestArticles.length > 0 && (
-      <section class="sec home-articles" id="artikel">
-        <div class="wrap">
-          <div class="lead-row reveal">
-            <h2 class="h2">Wawasan & Update dari Lapangan</h2>
-            <p>Praktik peternakan, cerita ternak, dan kabar operasional terbaru — langsung dari kandang kami.</p>
+    {
+      latestArticles.length > 0 && (
+        <section class="sec home-articles" id="artikel">
+          <div class="wrap">
+            <div class="lead-row reveal">
+              <h2 class="h2">Artikel & Wawasan Peternakan</h2>
+              <p>
+                Praktik peternakan, cerita ternak, dan kabar terbaru dari para
+                peternak.
+              </p>
+            </div>
+            <div class="article-list home-articles-list reveal">
+              {latestArticles.map((a) => (
+                <ArticleRow
+                  slug={a.slug}
+                  title={a.title}
+                  excerpt={a.excerpt}
+                  date={a.publishedAt}
+                  category={a.category}
+                />
+              ))}
+            </div>
           </div>
-          <div class="article-list home-articles-list reveal">
-            {latestArticles.map((a) => (
-              <ArticleRow
-                slug={a.slug}
-                title={a.title}
-                excerpt={a.excerpt}
-                date={a.publishedAt}
-                category={a.category}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
+        </section>
+      )
+    }
 
     <FAQ />
 
