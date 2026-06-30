@@ -37,3 +37,10 @@
 
 /favicon.*
   Cache-Control: public, max-age=86400
+
+# Halaman artikel: JSON-LD Article inline (isi per artikel berbeda-beda,
+# hash SHA tidak praktis di-hardcode). Override CSP untuk path ini saja.
+/artikel/*/
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.sanity.io; connect-src 'self' https://challenges.cloudflare.com https://script.google.com https://script.googleusercontent.com https://*.sanity.io; frame-src https://challenges.cloudflare.com;
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
