@@ -3,6 +3,7 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches: [main]
+  workflow_dispatch:   # Manual trigger dari GitHub UI
   repository_dispatch:  # Triggered by Sanity webhook
     types: [sanity-publish]
 
