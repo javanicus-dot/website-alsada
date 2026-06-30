@@ -59,13 +59,12 @@
       if (!document.hidden) forcePlay();
     });
 
-    // Tombol suara: toggle mute/unmute.
+    // Tombol suara: klik sekali → unmute, lalu tombol menghilang.
     const btn = document.getElementById("muteBtn");
     if (btn) {
       btn.addEventListener("click", () => {
-        v.muted = !v.muted;
-        btn.textContent = v.muted ? "🔇" : "🔊";
-        btn.setAttribute("aria-label", v.muted ? "Nyalakan suara" : "Matikan suara");
+        v.muted = false;
+        btn.style.display = "none";
       });
     }
   }
