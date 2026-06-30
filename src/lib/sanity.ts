@@ -168,6 +168,6 @@ export async function getAllArticleSlugs(): Promise<string[]> {
 const builder = imageUrlBuilder(client);
 
 export function urlFor(source: any) {
-  if (!source) return { url: () => "" };
+  // builder.image(null) tetap return builder object — .url() akan menghasilkan ""
   return builder.image(source).auto("format").quality(80);
 }
