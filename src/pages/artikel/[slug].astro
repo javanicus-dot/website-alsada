@@ -39,7 +39,7 @@ const canonical = new URL(
   Astro.url.pathname,
   "https://alsada.co.id/",
 ).toString();
-const schemaImage = article.coverImage
+const schemaImage = article.coverImage?.asset?._ref
   ? urlFor(article.coverImage).width(1200).height(630).url()
   : "https://alsada.co.id/assets/og-image.jpg";
 
@@ -121,7 +121,7 @@ const articleLdJson = {
             )
           }
           {
-            article.coverImage && (
+            article.coverImage?.asset?._ref && (
               <img
                 class="article-cover"
                 src={urlFor(article.coverImage).url()}
