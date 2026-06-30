@@ -44,6 +44,19 @@
     object-fit: cover;
     display: block;
   }
+
+  /* Tombol suara: awal besar di tengah (pakai .play dari global.css),
+     setelah klik pertama → mengecil ke pojok kanan bawah. */
+  .video .play.corner {
+    inset: auto;
+    bottom: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+    margin: 0;
+    transition: all 0.35s ease;
+  }
 </style>
 
 <script>
@@ -59,12 +72,22 @@
       if (!document.hidden) forcePlay();
     });
 
-    // Tombol suara: klik sekali → unmute, lalu tombol menghilang.
+    // Tombol suara: klik pertama → unmute + pindah ke pojok; selanjutnya toggle mute/unmute.
     const btn = document.getElementById("muteBtn");
     if (btn) {
+      let firstClick = true;
       btn.addEventListener("click", () => {
-        v.muted = false;
-        btn.style.display = "none";
+        if (firstClick) {
+          v.muted = false;
+          btn.textContent = "🔊";
+          btn.setAttribute("aria-label", "Matikan suara");
+          btn.classList.add("corner");
+          firstClick = false;
+        } else {
+          v.muted = !v.muted;
+          btn.textContent = v.muted ? "🔇" : "🔊";
+          btn.setAttribute("aria-label", v.muted ? "Nyalakan suara" : "Matikan suara");
+        }
       });
     }
   }
