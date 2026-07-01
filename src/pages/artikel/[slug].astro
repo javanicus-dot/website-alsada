@@ -2,9 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
-import { getAllArticleSlugs, getArticleBySlug } from "../../lib/sanity";
+import { getAllArticleSlugs, getArticleBySlug, urlFor, type ArticleFull } from "../../lib/sanity";
 import { portableTextToHtml } from "../../lib/portable-text";
-import { urlFor } from "../../lib/sanity";
 
 // Generate satu halaman statis per artikel di Sanity.
 export async function getStaticPaths() {
@@ -33,8 +32,30 @@ const formatted = dt.toLocaleDateString("id-ID", {
 // Render Portable Text body ke HTML
 const bodyHtml = portableTextToHtml(article.body);
 
+function generateMetaDescription(article: ArticleFull): string {
+  const ex = article.excerpt?.trim();
+  if (ex && ex.length >= 20 && !/^[a-zA-Z,\s]{3,}$/.test(ex)) {
+    return ex;
+  }
+  if (article.body?.length) {
+    let combined = "";
+    for (const block of article.body) {
+      if (block._type === "block" && block.children?.length) {
+        const text = block.children.map((c: any) => c.text || "").join("").trim();
+        if (text.length < 10) continue;
+        combined += (combined ? " " : "") + text;
+        if (combined.length >= 120) break;
+      }
+    }
+    if (combined.length >= 30) {
+      return combined.length > 160 ? combined.slice(0, combined.lastIndexOf(" ", 157)) + "..." : combined;
+    }
+  }
+  return "";
+}
+
 const title = `${article.title} — Alsada`;
-const description = article.excerpt || "";
+const description = generateMetaDescription(article);
 const canonical = new URL(
   Astro.url.pathname,
   "https://alsada.co.id/",
@@ -49,7 +70,7 @@ const articleLdJson = {
   "@context": "https://schema.org",
   "@type": "Article",
   headline: article.title,
-  description: article.excerpt,
+  description: description,
   image: schemaImage,
   datePublished: article.publishedAt,
   dateModified: article.publishedAt,
