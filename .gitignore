@@ -23,3 +23,15 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 laporan-audit*
+
+# Editor config (pribadi)
+.vscode/
+.idea/
+
+# Laporan & dokumentasi sementara
+final-report*
+*-report.html
+*-report.pdf
+
+# Windows metadata
+*.Identifier
