@@ -24,14 +24,14 @@ apa adanya dari root, jadi file di sini diakses lewat path `/assets/...`.
 
 | File | Rekomendasi | Catatan |
 |---|---|---|
-| `video-v3.webm` | VP9, rasio 16:7, < ~8 MB | Sumber utama (ringan, browser modern) |
-| `video-v3.mp4` | H.264, rasio 16:7 | Fallback Safari/iOS lama (dibuat dari webm) |
+| `video.webm` | VP9, rasio 16:7, < ~8 MB | Sumber utama (ringan, browser modern) |
+| `video.mp4` | H.264, rasio 16:7 | Fallback Safari/iOS lama (dibuat dari webm) |
 
 - Video diputar **otomatis saat section masuk layar** dan **berhenti saat keluar** (tanpa tombol).
 - Wajib tetap **tanpa audio** — browser hanya mengizinkan autoplay untuk video `muted`.
 - `poster` memakai `video-cover.jpg` (tampil sebelum video dimuat).
 - Cloudflare Pages membatasi **25 MB / file** — kompres video sebelum commit (mis. https://handbrake.fr).
-- Nama file saat ini `video-v3.webm` + `video-v3.mp4`; kalau diganti, perbarui `<source>` di `src/components/VideoSection.astro`.
+- Nama file saat ini `video.webm` + `video.mp4`; kalau diganti, perbarui `<source>` di `src/components/VideoSection.astro`.
 
 Favicon brand sudah lengkap (dibuat dari `logo.png`): `favicon.svg`, `favicon.ico`, `favicon-96.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest`.
 
