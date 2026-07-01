@@ -25,6 +25,7 @@
   Permissions-Policy: geolocation=(), camera=(), microphone=(), interest-cohort=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   Cross-Origin-Opener-Policy: same-origin
+  Link: </sitemap-index.xml>; rel="sitemap"
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
@@ -47,3 +48,4 @@
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.sanity.io https://www.google-analytics.com; connect-src 'self' https://challenges.cloudflare.com https://script.google.com https://script.googleusercontent.com https://*.sanity.io https://*.google-analytics.com https://*.analytics.google.com https://cloudflareinsights.com; frame-src https://challenges.cloudflare.com;
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+  Link: </sitemap-index.xml>; rel="sitemap"
