@@ -27,6 +27,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify Sanity data (webhook trigger only)
+        if: github.event_name == 'repository_dispatch'
+        env:
+          PUBLIC_SANITY_PROJECT_ID: ${{ vars.PUBLIC_SANITY_PROJECT_ID }}
+          PUBLIC_SANITY_DATASET: ${{ vars.PUBLIC_SANITY_DATASET }}
+        run: |
+          node .github/scripts/verify-sanity.js
+          echo "Waiting 5s for final propagation..."
+          sleep 5
+
       - name: Build
         env:
           PUBLIC_SANITY_PROJECT_ID: ${{ vars.PUBLIC_SANITY_PROJECT_ID }}
