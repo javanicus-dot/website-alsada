@@ -17,9 +17,11 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const article = await getArticleBySlug(slug);
 
-// 404 kalau artikel tidak ditemukan
+// Guard: kalau artikel tidak ditemukan, kembalikan HTTP 404 ASLI (bukan redirect).
+// Redirect ke /404 menghasilkan soft-404 di mata Google. Dengan getStaticPaths,
+// jalur ini praktis tidak akan pernah tereksekusi, tapi tetap dibuat benar.
 if (!article) {
-  return Astro.redirect("/404");
+  return new Response(null, { status: 404, statusText: "Not Found" });
 }
 
 const dt = new Date(article.publishedAt);
@@ -28,6 +30,10 @@ const formatted = dt.toLocaleDateString("id-ID", {
   month: "long",
   year: "numeric",
 });
+
+// Tanggal modifikasi nyata dari Sanity (_updatedAt) — sinyal freshness untuk Google.
+// Fallback ke publishedAt kalau updatedAt belum tersedia.
+const dateModified = article.updatedAt || article.publishedAt;
 
 // Render Portable Text body ke HTML
 const bodyHtml = portableTextToHtml(article.body);
@@ -64,34 +70,62 @@ const schemaImage = article.coverImage?.asset?._ref
   ? urlFor(article.coverImage).width(1200).height(630).url()
   : "https://alsada.co.id/assets/og-image.jpg";
 
-// JSON-LD Article — dipasang inline di head via <script type="application/ld+json">.
-// Di-allow CSP lewat path override /artikel/* di public/_headers.
+// JSON-LD (Article + BreadcrumbList) dalam satu @graph — dipasang inline di head.
+// Di-allow CSP lewat path override /artikel/* (unsafe-inline) di public/_headers,
+// jadi TIDAK perlu hash sha256 (isi per-artikel berbeda-beda).
 const articleLdJson = {
   "@context": "https://schema.org",
-  "@type": "Article",
-  headline: article.title,
-  description: description,
-  image: schemaImage,
-  datePublished: article.publishedAt,
-  dateModified: article.publishedAt,
-  author: {
-    "@type": "Organization",
-    name: "PT. Alsada Barokah Nusantara",
-    url: "https://alsada.co.id/",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "PT. Alsada Barokah Nusantara",
-    url: "https://alsada.co.id/",
-    logo: {
-      "@type": "ImageObject",
-      url: "https://alsada.co.id/assets/logo.png",
+  "@graph": [
+    {
+      "@type": "Article",
+      headline: article.title,
+      description: description,
+      image: schemaImage,
+      datePublished: article.publishedAt,
+      dateModified: dateModified,
+      author: {
+        "@type": "Organization",
+        name: "PT. Alsada Barokah Nusantara",
+        url: "https://alsada.co.id/",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "PT. Alsada Barokah Nusantara",
+        url: "https://alsada.co.id/",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://alsada.co.id/assets/logo.png",
+        },
+      },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonical,
+      },
     },
-  },
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": canonical,
-  },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Beranda",
+          item: "https://alsada.co.id/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Artikel",
+          item: "https://alsada.co.id/artikel/",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: article.title,
+          item: canonical,
+        },
+      ],
+    },
+  ],
 };
 ---
 
@@ -99,13 +133,14 @@ const articleLdJson = {
   <Fragment slot="head">
     <!-- Metadata khusus artikel (CSP-safe, tanpa script inline). -->
     <meta property="article:published_time" content={article.publishedAt} />
+    <meta property="article:modified_time" content={dateModified} />
     {
       article.category && (
         <meta property="article:section" content={article.category} />
       )
     }
     <meta property="article:publisher" content="PT. Alsada Barokah Nusantara" />
-    <!-- Structured Data: Article (Google Rich Results) -->
+    <!-- Structured Data: Article + BreadcrumbList (Google Rich Results) -->
     <script
       type="application/ld+json"
       is:inline
@@ -118,7 +153,7 @@ const articleLdJson = {
       <meta itemprop="author" content="PT. Alsada Barokah Nusantara" />
       <meta itemprop="publisher" content="PT. Alsada Barokah Nusantara" />
       <meta itemprop="mainEntityOfPage" content={canonical} />
-      <meta itemprop="dateModified" content={article.publishedAt} />
+      <meta itemprop="dateModified" content={dateModified} />
       <meta itemprop="image" content={schemaImage} />
       <header class="article-hero">
         <div class="wrap">

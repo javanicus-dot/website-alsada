@@ -53,7 +53,7 @@ For Cloudflare Pages deployment, set the variables above in the Pages dashboard 
 
 ## Contact form
 
-The form at `/kontak` sends data via `no-cors` POST to Google Apps Script → writes to the sheet **"Alsada - Kontak Website"** (tab `Kontak`, columns `Timestamp | Nama | Kontak | Minat | Lokasi | Pesan | Source`).
+The form at `/kontak` sends data via CORS POST (`Content-Type: text/plain`) to Google Apps Script and reads the JSON reply for accurate success/error status → writes to the sheet **"Alsada - Kontak Website"** (tab `Kontak`, columns `Timestamp | Nama | Kontak | Minat | Lokasi | Pesan | Source`).
 
 Full setup (sheet id, webhook URL, deploy guide, re-deploy after edits): `docs/google-sheets-integration.md`.
 

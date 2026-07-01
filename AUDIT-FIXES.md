@@ -7,12 +7,12 @@
 1. **Konten blank tanpa JS** — `src/styles/global.css` + `src/layouts/Layout.astro`:
    fallback `@media (prefers-reduced-motion: reduce)` + `<noscript>` agar `.reveal` tetap terlihat.
 2. **Halaman 404** — `src/pages/404.astro` (otomatis jadi `/404.html` saat build).
-3. **JSON-LD lolos CSP** — `public/_headers`: hash `sha256-osnTEfQPbDXGskDyFc5BVB6x+a74SuhKyOoC9sz7aes=`
+3. **JSON-LD lolos CSP** — `public/_headers`: hash `sha256-TjD6coXR4aFxMk2PcLHU32Xpmga3066HNuB/kHfmGxk=`
    pada `script-src` (TANPA `unsafe-inline`). Hash ini cocok untuk JSON-LD domain `alsada.co.id`.
 4. **Sitemap & robots** — `@astrojs/sitemap` di `astro.config.mjs` + `public/robots.txt`.
 5. **.gitignore + .env.example** — `.env` asli di-ignore.
 6. **Aksesibilitas fokus** — `:focus-visible` + outline field form.
-7. **Favicon** — `<link rel="icon">` (svg + ico) di Layout.
+7. **Favicon** — set lengkap di Layout: `favicon.svg`, `favicon.ico`, `favicon-96.png`, `apple-touch-icon.png`, `icon-192/512.png`, `site.webmanifest` (dibuat dari `logo.png`).
 8. **Hero LCP** — `<link rel="preload">` hero.jpg khusus homepage.
 9. **Social link footer** — IG & WA sudah diisi URL asli di `src/components/Footer.astro`.
 10. **Aset** — `og-image.jpg` (1200×630) & `video-cover.jpg` sudah ada.
@@ -42,8 +42,8 @@
       SEMUA submit ditolak (Code.gs fail-closed).
 - [ ] **Deploy hook Sanity → Cloudflare Pages** supaya artikel baru otomatis ter-publish
       (situs static; tanpa hook artikel baru tak muncul sampai rebuild).
-- [ ] **Video asli**: `public/assets/video.mp4` (~54 KB) & `video.webm` (~112 KB) masih kecil
-      (kemungkinan placeholder) — ganti dengan footage asli terkompres.
+- [ ] **Video asli**: `public/assets/video-v3.webm` (~1,4 MB) + fallback `video-v3.mp4` — pastikan
+      ini footage asli (bukan placeholder) dan sudah terkompres.
 - [ ] **Verifikasi konten**: testimoni (`Testimonials.astro`) & klaim angka ("12 peternak",
       "8 bulan") di `FAQ.astro` — pastikan asli, bukan dummy. Cek juga data legal (NIB/NPWP/KH-1).
 - [ ] **Untrack `.env`** dari git: `git rm --cached .env`.

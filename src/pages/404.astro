@@ -7,7 +7,8 @@ const title = "Halaman Tidak Ditemukan — PT. Alsada Barokah Nusantara";
 const description = "Halaman yang Anda cari tidak ditemukan.";
 ---
 
-<Layout title={title} description={description}>
+<!-- noindex: halaman error tidak boleh masuk indeks Google. -->
+<Layout title={title} description={description} noindex={true}>
   <Nav />
   <main id="main-content">
     <section class="article-hero article-hero--404">

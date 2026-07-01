@@ -5,9 +5,9 @@ import Footer from "../../components/Footer.astro";
 import ArticleRow from "../../components/ArticleRow.astro";
 import { getAllArticles } from "../../lib/sanity";
 
-const title = "Artikel — PT. Alsada Barokah Nusantara";
+const title = "Artikel & Wawasan Peternakan — PT Alsada Barokah Nusantara";
 const description =
-  "Update harian tentang peternakan modern, sapi FH, daging premium, breeding, dan ketahanan pangan dari Alsada.";
+  "Wawasan dan praktik peternakan modern dari Alsada: sapi FH, jual-beli sapi, daging premium, breeding, dan ketahanan pangan.";
 
 // Ambil semua artikel dari Sanity, diurut dari terbaru.
 const articles = await getAllArticles();
@@ -18,7 +18,7 @@ const articles = await getAllArticles();
   <main id="main-content">
     <section class="article-hero article-hero--list">
       <div class="wrap">
-        <span class="pill-badge">Update Harian</span>
+        <span class="pill-badge">Wawasan Peternakan</span>
         <h1 class="article-hero__title-list">Artikel & Wawasan Peternakan</h1>
         <p class="lead">
           Praktik peternakan, cerita ternak, dan kabar terbaru dari para

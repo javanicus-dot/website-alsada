@@ -64,7 +64,7 @@ npm run preview   # serve hasil build di http://localhost:4321
 ### Artikel `/artikel` dan `/artikel/[slug]`
 - [ ] Daftar artikel tampil (kalau Sanity kosong, halaman tetap aman/tidak error)
 - [ ] Klik artikel → halaman detail tampil dengan judul, tanggal, kategori, body
-- [ ] Slug tidak ada → redirect ke `/404`
+- [ ] Slug tidak ada → balas HTTP 404 asli + tampil halaman 404 kustom
 - [ ] Gambar dari `cdn.sanity.io` tampil (tidak diblokir CSP)
 
 ### 404

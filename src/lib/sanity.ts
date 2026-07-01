@@ -46,6 +46,8 @@ export interface ArticleSummary {
   excerpt: string;
   category: string;
   publishedAt: string;
+  /** Tanggal terakhir artikel diubah di Sanity (_updatedAt). Untuk dateModified / sinyal freshness. */
+  updatedAt?: string;
   coverImage?: any;
   hasCover?: boolean;
 }
@@ -77,6 +79,7 @@ export const client = createClient(config);
 // GROQ = Graph-Relational Object Queries (bahasa query Sanity).
 
 // Select fields untuk kartu artikel (daftar)
+// Catatan: _updatedAt di-alias jadi updatedAt untuk dateModified (sinyal freshness Google).
 const ARTICLE_CARD_FIELDS = `
   _id,
   title,
@@ -84,6 +87,7 @@ const ARTICLE_CARD_FIELDS = `
   excerpt,
   category,
   publishedAt,
+  "updatedAt": _updatedAt,
   coverImage,
   "hasCover": defined(coverImage)
 `;

@@ -1,7 +1,7 @@
 ---
 // Section video — autoplay paksa & berjalan terus-menerus (loop). Tanpa tombol.
-// Video di-host lokal di /public/assets/. Ganti video.mp4 (+ video.webm bila ada)
-// dengan video asli yang sudah dikompres. poster = gambar sebelum video dimuat.
+// Video di-host lokal di /public/assets/ (video-v3.webm + fallback video-v3.mp4).
+// poster = gambar sebelum video dimuat.
 ---
 
 <section class="sec sec-cream">
@@ -28,6 +28,7 @@
         poster="/assets/video-cover.jpg"
       >
         <source src="/assets/video-v3.webm" type="video/webm" />
+        <source src="/assets/video-v3.mp4" type="video/mp4" />
       </video>
       <button class="play" id="muteBtn" aria-label="Nyalakan suara">🔇</button>
     </div>

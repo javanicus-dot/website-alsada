@@ -10,19 +10,22 @@ interface Props {
   canonical?: string;
   ogImage?: string;
   ogType?: string;
+  /** Set true untuk halaman yang TIDAK boleh diindeks (mis. 404). */
+  noindex?: boolean;
 }
 
 // Domain diambil dari `site` di astro.config.mjs. Ganti di sana saat pindah domain.
 const SITE = (Astro.site?.toString() ?? "https://alsada.co.id").replace(/\/$/, "");
 
 const {
-  // Judul homepage: keyword utama di depan (susu FH, sapi, daging) + nama brand.
-  title = "PT Alsada Barokah Nusantara",
+  // Judul homepage: keyword utama di depan (peternakan sapi, susu FH) + nama brand.
+  title = "Peternakan Sapi Modern & Susu FH Segar | PT Alsada Barokah Nusantara",
   // Deskripsi homepage: ringkas, padat keyword, ada manfaat + bukti kredibilitas.
   description = "Peternakan sapi modern terintegrasi hulu ke hilir: susu FH segar, jual-beli sapi, daging premium, breeding & penggemukan. PT legalitas lengkap, siap diaudit.",
   canonical = new URL(Astro.url.pathname, `${SITE}/`).toString(),
   ogImage = `${SITE}/assets/og-image.jpg`,
   ogType = "website",
+  noindex = false,
 } = Astro.props;
 
 // ===== Structured data global (Organization + WebSite) dalam satu @graph. =====
@@ -44,9 +47,10 @@ const structuredData = {
       "telephone": "+62-811-2701-1942",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Ds. Kutabawa, Karangreja",
+        "streetAddress": "Jl. Raya Selaganggeng, Mrebet",
         "addressLocality": "Purbalingga",
         "addressRegion": "Jawa Tengah",
+        "postalCode": "53352",
         "addressCountry": "ID"
       },
       "areaServed": "ID",
@@ -95,14 +99,23 @@ const structuredData = {
   <meta name="theme-color" content="#0c2316" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="keywords" content="peternakan modern, susu sapi FH, ketahanan pangan, jual beli sapi, daging premium, sapi perah, sapi limousin, breeding sapi, penggemukan sapi, investasi peternakan" />
   <meta name="author" content="PT. Alsada Barokah Nusantara" />
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta
+    name="robots"
+    content={noindex
+      ? "noindex, follow"
+      : "index, follow, max-image-preview:large, max-snippet:-1"}
+  />
   <link rel="canonical" href={canonical} />
 
-  <!-- Favicon -->
+  <!-- Favicon & app icons.
+       PENTING: favicon.svg + favicon.ico + PNG semuanya memakai LOGO BRAND yang SAMA
+       (logo banteng Alsada). Jangan pakai lagi logo default template Astro. -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <meta property="og:type" content={ogType} />
   <meta property="og:locale" content="id_ID" />
