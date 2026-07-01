@@ -18,8 +18,8 @@ npm install
 cp .env.example .env   # lalu isi PUBLIC_SANITY_PROJECT_ID, dataset, dll
 ```
 
-- [ ] `.env` sudah diisi dan `.env` TIDAK ikut ter-commit (`git status` harus bersih dari `.env`)
-- [ ] `git rm --cached .env` sudah dijalankan bila sebelumnya pernah ter-commit
+- [x] `.env` sudah diisi dan `.env` TIDAK ikut ter-commit (`git status` harus bersih dari `.env`)
+- [x] `git rm --cached .env` sudah dijalankan bila sebelumnya pernah ter-commit
 
 ---
 
@@ -31,10 +31,10 @@ npm run build     # build production ke /dist
 npm run preview   # serve hasil build di http://localhost:4321
 ```
 
-- [ ] `npm run check` selesai TANPA error
-- [ ] `npm run build` sukses, tidak ada warning fatal
-- [ ] Folder `dist/` berisi: `index.html`, `tentang/index.html`, `kontak/index.html`, `artikel/index.html`, `404.html`, dan satu folder per artikel
-- [ ] `dist/_headers`, `dist/robots.txt`, `dist/sitemap-*.xml` ada (sitemap dari @astrojs/sitemap)
+- [x] `npm run check` selesai TANPA error (1 hint is:inline — opsional)
+- [x] `npm run build` sukses, tidak ada warning fatal
+- [x] Folder `dist/` berisi: `index.html`, `tentang/index.html`, `kontak/index.html`, `artikel/index.html`, `404.html`, dan 2 folder artikel
+- [x] `dist/_headers`, `dist/robots.txt`, `dist/sitemap-index.xml`, `dist/sitemap-0.xml` ada
 
 > Catatan: semua langkah UI di bawah diuji di hasil `npm run preview` (bukan `npm run dev`),
 > karena `_headers`/CSP & sitemap hanya akurat pada build production.
@@ -109,11 +109,11 @@ npm run preview   # serve hasil build di http://localhost:4321
 
 ## 4. SEO & Structured Data
 
-- [ ] View-source tiap halaman: `<title>` & `<meta name=description>` UNIK dan sesuai
-- [ ] `<link rel=canonical>` benar (mengarah ke URL halaman itu di `alsada.co.id`)
-- [ ] OG/Twitter tags lengkap; `og:type` = `website` (umum) / `article` (halaman artikel)
-- [ ] `robots.txt` benar & menunjuk ke sitemap
-- [ ] `sitemap-index.xml` memuat semua halaman termasuk artikel
+- [x] View-source tiap halaman: `<title>` & `<meta name=description>` UNIK dan sesuai
+- [x] `<link rel=canonical>` benar (mengarah ke URL halaman itu di `alsada.co.id`)
+- [x] OG/Twitter tags lengkap; `og:type` = `website` (umum) / `article` (halaman artikel) — verified
+- [x] `robots.txt` benar & menunjuk ke sitemap
+- [x] `sitemap-index.xml` memuat semua halaman termasuk artikel — 6 URLs
 - [ ] **Rich Results Test** (https://search.google.com/test/rich-results):
   - [ ] Homepage → terdeteksi `Organization` + `WebSite`, tanpa error
   - [ ] Homepage → terdeteksi `FAQPage` (eligible untuk rich snippet)
@@ -126,14 +126,14 @@ npm run preview   # serve hasil build di http://localhost:4321
 ## 5. Keamanan (CSP & headers)
 
 - [ ] Di production (Cloudflare Pages), buka DevTools Console → TIDAK ada error "Refused to execute/load ... CSP"
-- [ ] JSON-LD ter-render & valid (artinya hash sha256 cocok). Jika diblokir → regenerasi hash:
+- [x] JSON-LD ter-render & valid — 2 blok, hash sha256 cocok dengan CSP
   ```bash
   # hitung ulang hash setelah mengubah isi JSON-LD
   node -e "const c=require('crypto');const s=require('fs').readFileSync(0,'utf8');console.log('sha256-'+c.createHash('sha256').update(s,'utf8').digest('base64'))"
   ```
 - [ ] Cek header live: `curl -sI https://alsada.co.id | grep -i -E 'content-security|x-frame|x-content|referrer|permissions'`
 - [ ] `Strict-Transport-Security`/HTTPS aktif; `http://` redirect ke `https://`
-- [ ] `.env`, `/sanity-studio` source, file rahasia TIDAK ter-publish di `dist/`
+- [x] `.env`, `/sanity-studio` source, file rahasia TIDAK ter-publish di `dist/`
 
 ---
 
@@ -141,7 +141,7 @@ npm run preview   # serve hasil build di http://localhost:4321
 
 - [ ] Navigasi penuh pakai keyboard (Tab/Shift+Tab/Enter) di semua link, form, burger
 - [ ] Focus ring terlihat di elemen interaktif
-- [ ] Semua `<img>` punya `alt` deskriptif
+- [x] Semua `<img>` punya `alt` deskriptif — 10/10 verified
 - [ ] Kontras teks cukup (cek Lighthouse a11y)
 - [ ] Lighthouse → Accessibility ≥ 95
 
@@ -186,7 +186,9 @@ curl -s https://alsada.co.id/sitemap-index.xml | head -5
 
 | # | Halaman/Fitur | Masalah | Severity | Status |
 |---|---------------|---------|----------|--------|
-|   |               |         |          |        |
+| 1 | sanity-studio/ | 4 error ts(2307) di sanity-studio/*.ts karena `**/*` di tsconfig | Low | Fixed — exclude sanity-studio di tsconfig |
+| 2 | Layout.astro:133 | Hint astro(4000): GA script perlu `is:inline` | Low | Open |
+| 3 | Preview server | Tidak bisa dijalankan di background shell ini | Low | — |
 
 ---
 
