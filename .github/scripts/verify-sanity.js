@@ -4,7 +4,7 @@
  * Script ini memastikan artikel yang baru dipublish sudah tersedia di API.
  */
 
-const https = require('https');
+import https from 'https';
 
 const PROJECT_ID = process.env.PUBLIC_SANITY_PROJECT_ID || 'fisaenba';
 const DATASET = process.env.PUBLIC_SANITY_DATASET || 'production';
