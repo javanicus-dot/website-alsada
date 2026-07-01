@@ -15,7 +15,7 @@
 # Jika nanti menambah embed (YouTube/Vimeo/Maps), tambahkan origin-nya ke frame-src/img-src.
 
 /*
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'sha256-osnTEfQPbDXGskDyFc5BVB6x+a74SuhKyOoC9sz7aes=' 'sha256-VkdIHadsds3WgqPKVuMpa3/34ozCMosPbDVRvLsn4Gs=' https://challenges.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.sanity.io https://www.google-analytics.com; connect-src 'self' https://challenges.cloudflare.com https://script.google.com https://script.googleusercontent.com https://*.sanity.io https://*.google-analytics.com https://*.analytics.google.com; frame-src https://challenges.cloudflare.com; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'sha256-TjD6coXR4aFxMk2PcLHU32Xpmga3066HNuB/kHfmGxk=' 'sha256-VkdIHadsds3WgqPKVuMpa3/34ozCMosPbDVRvLsn4Gs=' https://challenges.cloudflare.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://cdn.sanity.io https://www.google-analytics.com; connect-src 'self' https://challenges.cloudflare.com https://script.google.com https://script.googleusercontent.com https://*.sanity.io https://*.google-analytics.com https://*.analytics.google.com; frame-src https://challenges.cloudflare.com; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin

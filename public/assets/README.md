@@ -7,7 +7,7 @@ apa adanya dari root, jadi file di sini diakses lewat path `/assets/...`.
 
 | File | Ukuran disarankan | Rasio | Dipakai di |
 |---|---|---|---|
-| `logo.png` | 512x512 | 1:1 (PNG transparan) | SEO JSON-LD (`Layout.astro`) |
+| `logo.png` | 512x512 (saat ini 100x100 — sebaiknya di-upscale) | 1:1 (PNG transparan) | SEO JSON-LD + favicon (`Layout.astro`) |
 | `og-image.jpg` | 1200x630 | 1.91:1 | Open Graph / share sosmed (`Layout.astro`) |
 | `hero.jpg` | 1920x1080 | 16:9 | Background Hero (`global.css`) |
 | `video-cover.jpg` | 1600x700 | 16:7 | Background section Video (`global.css`) |
@@ -18,22 +18,22 @@ apa adanya dari root, jadi file di sini diakses lewat path `/assets/...`.
 | `products/daging-premium.jpg` | 800x800 | 1:1 | Daging Berkualitas Tinggi |
 | `products/breeding-pedet.jpg` | 800x800 | 1:1 | Breeding & Pedet |
 | `products/penggemukan-limousin.jpg` | 800x800 | 1:1 | Penggemukan Limousin |
-| `products/head-office.jpg` | 800x800 | 1:1 | Head Office Terpadu |
+| `products/head-office-v2.jpg` | 800x800 | 1:1 | Head Office Terpadu |
 
 ## Video (VideoSection)
 
 | File | Rekomendasi | Catatan |
 |---|---|---|
-| `video.mp4` | H.264, rasio 16:7, < ~8 MB | Sumber utama (paling kompatibel) |
-| `video.webm` | VP9, rasio 16:7 | Opsional, lebih ringan untuk browser modern |
+| `video-v3.webm` | VP9, rasio 16:7, < ~8 MB | Sumber utama (ringan, browser modern) |
+| `video-v3.mp4` | H.264, rasio 16:7 | Fallback Safari/iOS lama (dibuat dari webm) |
 
 - Video diputar **otomatis saat section masuk layar** dan **berhenti saat keluar** (tanpa tombol).
 - Wajib tetap **tanpa audio** — browser hanya mengizinkan autoplay untuk video `muted`.
 - `poster` memakai `video-cover.jpg` (tampil sebelum video dimuat).
 - Cloudflare Pages membatasi **25 MB / file** — kompres video sebelum commit (mis. https://handbrake.fr).
-- Pertahankan nama `video.mp4` / `video.webm`, atau perbarui `<source>` di `src/components/VideoSection.astro`.
+- Nama file saat ini `video-v3.webm` + `video-v3.mp4`; kalau diganti, perbarui `<source>` di `src/components/VideoSection.astro`.
 
-Juga ganti favicon brand: `public/favicon.svg` dan `public/favicon.ico`.
+Favicon brand sudah lengkap (dibuat dari `logo.png`): `favicon.svg`, `favicon.ico`, `favicon-96.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest`.
 
 ## Tips
 
