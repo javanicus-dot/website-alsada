@@ -129,7 +129,7 @@ const articleLdJson = {
 };
 ---
 
-<Layout title={title} description={description} ogType="article">
+<Layout title={title} description={description} canonical={canonical} ogImage={schemaImage} ogType="article">
   <Fragment slot="head">
     <!-- Metadata khusus artikel (CSP-safe, tanpa script inline). -->
     <meta property="article:published_time" content={article.publishedAt} />
