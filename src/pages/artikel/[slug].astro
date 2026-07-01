@@ -69,6 +69,9 @@ const canonical = new URL(
 const schemaImage = article.coverImage?.asset?._ref
   ? urlFor(article.coverImage).width(1200).height(630).url()
   : "https://alsada.co.id/assets/og-image.jpg";
+const coverImageUrl = article.coverImage?.asset?._ref
+  ? urlFor(article.coverImage).width(1200).height(675).url()
+  : "";
 
 // JSON-LD (Article + BreadcrumbList) dalam satu @graph — dipasang inline di head.
 // Di-allow CSP lewat path override /artikel/* (unsafe-inline) di public/_headers,
@@ -177,11 +180,13 @@ const articleLdJson = {
             )
           }
           {
-            article.coverImage?.asset?._ref && (
+            coverImageUrl && (
               <img
                 class="article-cover"
-                src={urlFor(article.coverImage).url()}
+                src={coverImageUrl}
                 alt={article.title}
+                width="1200"
+                height="675"
                 loading="eager"
                 decoding="async"
               />
