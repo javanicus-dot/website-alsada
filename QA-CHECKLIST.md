@@ -188,7 +188,8 @@ curl -s https://alsada.co.id/sitemap-index.xml | head -5
 |---|---------------|---------|----------|--------|
 | 1 | sanity-studio/ | 4 error ts(2307) di sanity-studio/*.ts karena `**/*` di tsconfig | Low | Fixed — exclude sanity-studio di tsconfig |
 | 2 | Layout.astro:133 | Hint astro(4000): GA script perlu `is:inline` | Low | Open |
-| 3 | Preview server | Tidak bisa dijalankan di background shell ini | Low | — |
+| 3 | Artikel detail | Meta description pakai tags (\"Teknologi,Peternakan\") bukan deskripsi | High | Fixed — fallback dari body teks |
+| 4 | Preview server | Tidak bisa dijalankan di background shell ini | Low | — |
 
 ---
 
