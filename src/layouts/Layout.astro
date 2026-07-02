@@ -19,9 +19,9 @@ const SITE = (Astro.site?.toString() ?? "https://alsada.co.id").replace(/\/$/, "
 
 const {
   // Judul homepage: keyword utama di depan (peternakan sapi, susu FH) + nama brand.
-  title = "Peternakan Sapi Modern & Susu FH Segar | PT Alsada Barokah Nusantara",
+  title = "PT Alsada Barokah Nusantara",
   // Deskripsi homepage: ringkas, padat keyword, ada manfaat + bukti kredibilitas.
-  description = "Peternakan sapi modern terintegrasi hulu ke hilir: susu FH segar, jual-beli sapi, daging premium, breeding & penggemukan. PT legalitas lengkap, siap diaudit.",
+  description = "Peternakan sapi terintegrasi hulu ke hilir: susu FH segar, jual-beli sapi, daging premium, breeding & penggemukan. PT legalitas lengkap",
   canonical = new URL(Astro.url.pathname, `${SITE}/`).toString(),
   ogImage = `${SITE}/assets/og-image.jpg`,
   ogType = "website",
