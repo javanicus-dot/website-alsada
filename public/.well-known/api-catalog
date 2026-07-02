@@ -1,0 +1,52 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://fisaenba.api.sanity.io/v1/data/query/production",
+      "service-desc": [
+        {
+          "href": "https://www.sanity.io/docs/api",
+          "type": "text/html",
+          "title": "Sanity API — HTTP API reference (GROQ queries, mutations, assets)"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://www.sanity.io/docs/groq",
+          "type": "text/html",
+          "title": "GROQ (Graph-Relational Object Queries) documentation"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://fisaenba.api.sanity.io/v1/data/query/production?query=*%5B_type%3D%3D%22post%22%5D%7B_id%7D%5B0...1%5D",
+          "type": "application/json",
+          "title": "Health check — returns 1 article if API is reachable"
+        }
+      ]
+    },
+    {
+      "anchor": "https://alsada.co.id/kontak/",
+      "service-desc": [
+        {
+          "href": "https://alsada.co.id/kontak/",
+          "type": "text/html",
+          "title": "Contact form — POST with FormData (name, email, phone, message)"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://alsada.co.id/kontak/",
+          "type": "text/html",
+          "title": "Contact page with form fields and submission instructions"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://alsada.co.id/kontak/",
+          "type": "text/html",
+          "title": "Contact page availability check"
+        }
+      ]
+    }
+  ]
+}
