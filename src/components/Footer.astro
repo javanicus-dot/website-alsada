@@ -109,20 +109,16 @@ const year = new Date().getFullYear();
   );
   document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
-  // Highlight nav link aktif sesuai section yang terlihat di scroll.
-  // Hanya jalan kalau halaman punya section[id] (homepage).
+  // Highlight nav link aktif dengan IntersectionObserver, bukan scroll listener.
+  // Lebih ringan karena browser yang menentukan section mana yang sedang terlihat.
   const sections = [...document.querySelectorAll<HTMLElement>("section[id]")];
-  if (sections.length > 0) {
-    const navlinks = [...document.querySelectorAll("nav.links a")];
-    addEventListener("scroll", () => {
-      let cur = "home";
-      sections.forEach((s) => {
-        if (scrollY >= s.offsetTop - 120) cur = s.id;
-      });
+  const navlinks = [...document.querySelectorAll<HTMLAnchorElement>("nav.links a")];
+
+  if (sections.length > 0 && navlinks.length > 0) {
+    const setActiveLink = (id: string) => {
       navlinks.forEach((a) => {
-        const isActive =
-          a.getAttribute("href") === `/${"#"}${cur}` ||
-          a.getAttribute("href") === `#${cur}`;
+        const href = a.getAttribute("href");
+        const isActive = href === `/#${id}` || href === `#${id}`;
         a.classList.toggle("active", isActive);
         // WCAG 2.4.7: beri tahu screen reader link mana yang aktif.
         if (isActive) {
@@ -131,6 +127,26 @@ const year = new Date().getFullYear();
           a.removeAttribute("aria-current");
         }
       });
-    });
+    };
+
+    setActiveLink("home");
+
+    const activeNavIo = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (visible?.target instanceof HTMLElement) {
+          setActiveLink(visible.target.id);
+        }
+      },
+      {
+        rootMargin: "-35% 0px -55% 0px",
+        threshold: [0.1, 0.25, 0.5],
+      },
+    );
+
+    sections.forEach((section) => activeNavIo.observe(section));
   }
 </script>
